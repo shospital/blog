@@ -1,0 +1,10 @@
+---
+title: "Welcome To My Blog"
+author: "Sunny Hospital"
+date: "2024-03-02"
+categories: [machine learning]
+image: "snowymountain.jpeg"
+---
+
+This is a space where I add notes about something I learn. 
+
