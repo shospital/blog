@@ -2,7 +2,7 @@
 title: "Lit Review: Comparing resampling methods"
 description: "Journal summary of compare resampling methods using ridge regression to estimate lambda"
 author: "Sunny Hospital"
-date: "2024-03-05"
+date: "2024-03-08"
 categories: ["machine learning", "literature review"]
 image: "cat.jpeg"
 draft: true
@@ -11,15 +11,30 @@ draft: true
 __Article__: Validation of machine learning ridge regression models using Monte Carlo, bootstrap, and variations in cross-validation [Link to the article](https://www.degruyter.com/document/doi/10.1515/jisys-2022-0224/html)
 
 
-The article compares performance of the commonly used resampling techniques in machine/statistical learning using ridge regression models.  There are many conflicting suggestions for methods and parameter values for fine tuning hyper parameters.  
+The article evaluates the performance of widely utilized resampling techniques in machine/statistical learning by employing ridge regression models across five independent datasets. It addresses the numerous conflicting recommendations regarding methods and parameter values for fine-tuning hyperparameters.
 
-Using simulations, the author tries to answer the following questions:
+By using simulations, the author aims to address the following four questions:
+
 
 1.  Which of the four resampling methods is most effective in selecting a suitable regulatiziation paremter $\lambda$?
 2.  Does increasing the number of repetitions - from 10 to 50 - improve the performance of the resampling method?
-3.  Keeping the number of repetitions constant, which approach, single-run cross-validation or repated cross-validation, performs better?
+3.  Keeping the number of repetitions constant, which approach, single-run cross-validation or repeated cross-validation, performs better?
 4.  For k=fold CV, what is an appropriate fold size k?
 5.  Which randomization approach is more effective, Monte Carlo (sampling without replacement) or bootstrap (with replacement)?
+
+:::{.callout-tip title="Results"}
+
+
+1. Recommended resampling methods in order:  k-fold CV, 2. Repeated k-fold CV, 3. Monte Carlo and bootstrap not recommended as general-purpose resampling.
+
+2. With Monte Carlo and boostrap, in most cases 50 reps significantly increased performance.  In cross-validation resampling the 50 rep showed significantly better performance
+
+3.  The results indicate that repeated CV is a better performer than single-run CV and the general recommendation is to use 10-fold CV 5 reps across a wide range of dataset sizes and types.
+
+4.  For samller datasets increasing ${k}$ beyond 10 folds resulted in pooer performance as for large datasets (greater than 1000 rows), performance was improved.
+
+5.  No strong conclusions or recommendations due to an insignificant/slight advance of bootrap over Monte Carlo
+:::
 
 ### Ridge regression model
 
@@ -49,9 +64,6 @@ __The validation error__ is averaged over n repetitions.
 Similar to Monte Carlo sampling where data are randomly selected from the dataset but with replacement.  
 __The validation error__ is averaged over n repetitions.
 
-:::{.callout-note title="Sunnys note"}
-commonly (or by default) equal sampling probability?
-:::
 
 #### k-fold CV (Cross-validation)
 A dataset is divided into k partition at random (most commonly k=5 or 10).  One partition is held out (set aside) as a validation set, and the remaining k-1 partitions of data are used as a training set. 
@@ -68,4 +80,6 @@ most commonly use k=fold CV only once (rep =1) and repeated method is suggested 
 :::
 
 
-
+:::{.callout-warning title="TODO"}
+create a section describing results based on data size.
+:::
