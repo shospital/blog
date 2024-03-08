@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2024-03-05">
+<meta name="dcterms.date" content="2024-03-08">
 <meta name="description" content="Journal summary of compare resampling methods using ridge regression to estimate lambda">
 
 <title>Blog - Lit Review: Comparing resampling methods</title>
@@ -166,7 +166,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 5, 2024</p>
+        <p class="date">March 8, 2024</p>
       </div>
     </div>
     
@@ -186,15 +186,34 @@ window.Quarto = {
 
 
 <p><strong>Article</strong>: Validation of machine learning ridge regression models using Monte Carlo, bootstrap, and variations in cross-validation <a href="https://www.degruyter.com/document/doi/10.1515/jisys-2022-0224/html">Link to the article</a></p>
-<p>The article compares performance of the commonly used resampling techniques in machine/statistical learning using ridge regression models. There are many conflicting suggestions for methods and parameter values for fine tuning hyper parameters.</p>
-<p>Using simulations, the author tries to answer the following questions:</p>
+<p>The article evaluates the performance of widely utilized resampling techniques in machine/statistical learning by employing ridge regression models across five independent datasets. It addresses the numerous conflicting recommendations regarding methods and parameter values for fine-tuning hyperparameters.</p>
+<p>By using simulations, the author aims to address the following four questions:</p>
 <ol type="1">
 <li>Which of the four resampling methods is most effective in selecting a suitable regulatiziation paremter <span class="math inline">\(\lambda\)</span>?</li>
 <li>Does increasing the number of repetitions - from 10 to 50 - improve the performance of the resampling method?</li>
-<li>Keeping the number of repetitions constant, which approach, single-run cross-validation or repated cross-validation, performs better?</li>
+<li>Keeping the number of repetitions constant, which approach, single-run cross-validation or repeated cross-validation, performs better?</li>
 <li>For k=fold CV, what is an appropriate fold size k?</li>
 <li>Which randomization approach is more effective, Monte Carlo (sampling without replacement) or bootstrap (with replacement)?</li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Results">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Recommended resampling methods in order: k-fold CV, 2. Repeated k-fold CV, 3. Monte Carlo and bootstrap not recommended as general-purpose resampling.</p></li>
+<li><p>With Monte Carlo and boostrap, in most cases 50 reps significantly increased performance. In cross-validation resampling the 50 rep showed significantly better performance</p></li>
+<li><p>The results indicate that repeated CV is a better performer than single-run CV and the general recommendation is to use 10-fold CV 5 reps across a wide range of dataset sizes and types.</p></li>
+<li><p>For samller datasets increasing <span class="math inline">\({k}\)</span> beyond 10 folds resulted in pooer performance as for large datasets (greater than 1000 rows), performance was improved.</p></li>
+<li><p>No strong conclusions or recommendations due to an insignificant/slight advance of bootrap over Monte Carlo</p></li>
+</ol>
+</div>
+</div>
 <section id="ridge-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="ridge-regression-model">Ridge regression model</h3>
 <p>In regression model where Y is the target (response) variable and X_1, X_2, ..XP are feature (independent) variables, our goal is to find _beta coefficients that minimize the SSE in OLS. Linear model could have an overfitting problem.</p>
@@ -217,19 +236,6 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="bootstrap">Bootstrap</h4>
 <p>Similar to Monte Carlo sampling where data are randomly selected from the dataset but with replacement.<br>
 <strong>The validation error</strong> is averaged over n repetitions.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Sunnys note">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Sunnys note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>commonly (or by default) equal sampling probability?</p>
-</div>
-</div>
 </section>
 <section id="k-fold-cv-cross-validation" class="level4">
 <h4 class="anchored" data-anchor-id="k-fold-cv-cross-validation">k-fold CV (Cross-validation)</h4>
@@ -251,6 +257,19 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>most commonly use k=fold CV only once (rep =1) and repeated method is suggested as a way of obtaining more accurate and reliable estimates of error rates</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="TODO">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>create a section describing results based on data size.</p>
 </div>
 </div>
 
@@ -338,6 +357,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/shospital\.github\.io\/blog\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -372,7 +409,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
