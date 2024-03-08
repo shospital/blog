@@ -34,6 +34,7 @@ By using simulations, the author aims to address the following four questions:
 4.  For samller datasets increasing ${k}$ beyond 10 folds resulted in pooer performance as for large datasets (greater than 1000 rows), performance was improved.
 
 5.  No strong conclusions or recommendations due to an insignificant/slight advance of bootrap over Monte Carlo
+
 :::
 
 ### Ridge regression model
