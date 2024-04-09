@@ -1,0 +1,24 @@
+---
+title: "{nco} cheatsheet"
+description: "Working with  and nco tool"
+author: "Sunny Hospital"
+date: "2024-04-02"
+categories: ["netcdf", "nco"]
+image: "cat.jpeg"
+
+---
+
+This is an instruction to create a netcdf file with templated metadata.
+
+
+#### Create a metadata template from an existing nc file 
+
+``` 
+ncdump samplefile.nc > metadata_header.txt
+ncks -A -v temperature newdata.nc newfile.nc
+ncdump -v temperature newfile.nc
+ncks -A newdata.nc newfile.nc
+
+```
+
+

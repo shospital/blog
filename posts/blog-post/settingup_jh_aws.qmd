@@ -1,0 +1,202 @@
+
+
+---
+title: "Set up JupyterHub on AWS"
+description: "How to set up JupyterHub on AWS (Amazon web services)"
+author: "Sunny Hospital"
+date: "2024-04-03"
+categories: ["openscience", "cloud"]
+image: "fish.jpeg"
+
+---
+
+# Set up JupyterHub on AWS
+
+The set up instruction is based on the [https://saturncloud.io/blog/jupyterhub_aws/](https://saturncloud.io/blog/jupyterhub_aws/)
+
+## Requirements
+
+### Project Requirements
+
+* Scalable JupyterHub with RStudio and Python
+* Pre-installation of packages
+* Compute power sufficient for CoastWatch R and Python tutorials
+
+### AWS Service Requirements
+
+* VPC (Virtual Private Cloud) - creating a private network  
+* Cloud Formation - creating and starting aws services using a pre-specified template
+* Cloud9 - accessing aws services via command line (or download and use [```aws cli```](https://aws.amazon.com/cli/))
+
+* IAM Role - creating roles/users and associated policies
+* EKS (Elastic Kubernetes Service) - creating EKS cluster and manage kubernetes control plane
+* EBS (Elastic Block Storage) - creating storage for software/data installed on the cluster
+
+## Set Up AWS Architecture
+
+:::{.callout-tip title="AWS Account"}
+
+The process of creating AWS account is omitted in this document.
+:::
+
+### Create VPC using the template config file
+
+* Download VPC template from the satern cloud website, or [amazon-eks-vpc-private-subnets.yaml](https://drive.google.com/open?id=1MAE0eeXICRHiGe3TsoJmboGbq5JHC7fN&usp=drive_copy) 
+* Go to AWS Cloud Formation Console and create VPC using the downloaded template
+
+
+### Install ```kubectrl```
+* Either in Cloud9 or your local terminal 
+
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+
+### Install ```helm```
+
+:::{.callout-tip }
+Jupyterhub didn't work with lower version of ```helm```. 
+::: 
+
+```
+curl https://raw.githubusercontent.com/helm/helm/HEAD/scripts/get-helm-3 | bash
+helm version
+
+helm upgrade --cleanup-on-fail \
+--install YOUR_RELEASE jupyterhub/jupyterhub \
+--namespace YOUR_NS \
+--create-namespace --version='3.2.0' 
+--values config.yaml \
+```
+### Create IAM Role and User (IAM)
+
+* Go to IAM (Identity Access Management) Console 
+* Create IAM Role
+    * Select Usercase: __eksCluster__, Name:  my-eks-role 
+    * For policies: 
+        * Usercase: __EC2__ and attach the following:
+            * __AmazonEKSWorkerNodePolicy__
+            * __AmazonEC2ContainerRegistryReadOnly__
+            * __AmazonEKS_CNI_Policy__
+
+* Create IAM User
+    * Select __Attach policies directly__
+    *  Username : my-user; Select __AdminAccess__
+    * Download Access key to your desktop
+
+
+### Create Cluster (EKS)
+
+* Go to Cluster (EKS) Console and Create EKS cluster
+    * use default values for data entry
+    * Cluster servic role - eks role created 
+    * Cluster authentication mode: select EKS API and ConfigMap
+    * Select Your VPC and Public and private endpoint
+
+    * Leave security group empty
+    * Endpoint access - public and private
+
+### Create Cluster node group 
+
+* Select "Compute" from the cluster page 
+* Select add node role created  
+* Node IAM role: node group  
+* select instance type for a node
+    * AMI type: amazone linux 
+    * on-demand 
+    * t3.medium
+    * disk size: 20GiB
+    * node size (desired, min and max)
+
+### Configure IAM for cluster access 
+
+This step is to set up IAM role and user for cluster access
+
+* From the cluster created, copy __OpenID Connect provider URL__ from Cluster
+* Go to __IAM__ Console
+* Select Identity Providers under IAM and OpenID Connect and copy the URL
+    * Audience: sts.amazonaws.com
+    * Storage Configuration, Access -> Configure IAM access entry -> Select my-user (whatever you set up as iam user) 
+    * IAM principal ARN
+    * Audience: sts.amazonaws.com
+
+
+### Create Web identity role for cluster to access EBS (Elastic Block Storage) 
+* Go to the IAM Console 
+* Create IAM role (ebs-role)
+* Select Web Identity
+* Select aws add and  __sts.amazonaws__
+* Select __AmazonEBSCSIDriverPolicy__,  __Amazon EBS CSI Driver operator__ 
+* Go to Add-On and add __AmazonEBS__
+    * __Access__ : select my-user, __Policy__: __EKSClusterAdmin__
+
+### Create node group on your cluster 
+* Go to EKS Cluster Console
+* Make all values node=1 and max to =2 (up to your requirement)
+* Select __EC2Role__
+
+### Create EFS file system
+* Go to EFS Console 
+* Select your VPC 
+* Create
+
+### Add EBS Addon to our Cluster
+* Click on Addon on your Cluster
+* Click on more Addon and select Amazon EBS CSI Driver Info
+* Select ebs-role
+
+
+### Access cluster 
+
+* In your terminal or Cloud9, add ACCESS information downloaded earlier.
+```
+export AWS_ACCESS_KEY_ID=[ADD YOURS]
+export AWS_SECRET_ACCESS_KEY=[ADD YOURS]
+export AWS_DEFAULT_REGION=[YOUR REGION]
+
+aws sts get-caller-identity
+aws eks update-kubeconfig --region your_region --name name_of_your_cluster
+```
+
+```
+kubectl get svc
+Kubectl get node
+
+```
+
+### Upgrade helm and install docker
+
+```
+helm upgrade --cleanup-on-fail \
+--install noaa-release jupyterhub/jupyterhub \
+--namespace noaa \
+--create-namespace \
+--version='3.2.0' \
+--values config_basic_docker.yaml \
+--debug
+
+```
+
+### Connect to JupyterHub 
+```
+kubectl --namespace your_namespace get service proxy-public
+```
+# Terminal JupyterHub Setup
+
+## Delete EKS Cluster 
+
+* delete cluster node group first
+* delete eks cluster 
+
+:::{.callout-tip title="Note"}
+EBS should be deleted as cluster is terminated. 
+
+TODO: verify
+:::
+
+## Delete EFS 
+* Go to EFS file system and Delete EFS 
+
+
