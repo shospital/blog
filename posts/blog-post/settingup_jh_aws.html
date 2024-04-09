@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2024-03-08">
-<meta name="description" content="Journal summary of compare resampling methods using ridge regression to estimate lambda">
+<meta name="dcterms.date" content="2024-04-03">
+<meta name="description" content="How to set up JupyterHub on AWS (Amazon web services)">
 
-<title>Blog - Lit Review: Comparing resampling methods</title>
+<title>Blog - Set up JupyterHub on AWS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -140,15 +111,15 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Lit Review: Comparing resampling methods</h1>
+      <h1 class="title">Set up JupyterHub on AWS</h1>
                   <div>
         <div class="description">
-          Journal summary of compare resampling methods using ridge regression to estimate lambda
+          How to set up JupyterHub on AWS (Amazon web services)
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">machine learning</div>
-                <div class="quarto-category">literature review</div>
+                <div class="quarto-category">openscience</div>
+                <div class="quarto-category">cloud</div>
               </div>
                   </div>
   </div>
@@ -166,7 +137,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 8, 2024</p>
+        <p class="date">April 3, 2024</p>
       </div>
     </div>
     
@@ -185,68 +156,237 @@ window.Quarto = {
 
 
 
-<p><strong>Article</strong>: Validation of machine learning ridge regression models using Monte Carlo, bootstrap, and variations in cross-validation <a href="https://www.degruyter.com/document/doi/10.1515/jisys-2022-0224/html">Link to the article</a></p>
-<p>The article evaluates the performance of widely utilized resampling techniques in machine/statistical learning by employing ridge regression models across five independent datasets. It addresses the numerous conflicting recommendations regarding methods and parameter values for fine-tuning hyperparameters.</p>
-<p>By using simulations, the author aims to address the following four questions:</p>
-<ol type="1">
-<li>Which of the four resampling methods is most effective in selecting a suitable regulatiziation paremter <span class="math inline">\(\lambda\)</span>?</li>
-<li>Does increasing the number of repetitions - from 10 to 50 - improve the performance of the resampling method?</li>
-<li>Keeping the number of repetitions constant, which approach, single-run cross-validation or repeated cross-validation, performs better?</li>
-<li>For k=fold CV, what is an appropriate fold size k?</li>
-<li>Which randomization approach is more effective, Monte Carlo (sampling without replacement) or bootstrap (with replacement)?</li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled" title="Results">
+<section id="set-up-jupyterhub-on-aws" class="level1">
+<h1>Set up JupyterHub on AWS</h1>
+<p>The set up instruction is based on the <a href="https://saturncloud.io/blog/jupyterhub_aws/">https://saturncloud.io/blog/jupyterhub_aws/</a></p>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<section id="project-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="project-requirements">Project Requirements</h3>
+<ul>
+<li>Scalable JupyterHub with RStudio and Python</li>
+<li>Pre-installation of packages</li>
+<li>Compute power sufficient for CoastWatch R and Python tutorials</li>
+</ul>
+</section>
+<section id="aws-service-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="aws-service-requirements">AWS Service Requirements</h3>
+<ul>
+<li><p>VPC (Virtual Private Cloud) - creating a private network<br>
+</p></li>
+<li><p>Cloud Formation - creating and starting aws services using a pre-specified template</p></li>
+<li><p>Cloud9 - accessing aws services via command line (or download and use <a href="https://aws.amazon.com/cli/"><code>aws cli</code></a>)</p></li>
+<li><p>IAM Role - creating roles/users and associated policies</p></li>
+<li><p>EKS (Elastic Kubernetes Service) - creating EKS cluster and manage kubernetes control plane</p></li>
+<li><p>EBS (Elastic Block Storage) - creating storage for software/data installed on the cluster</p></li>
+</ul>
+</section>
+</section>
+<section id="set-up-aws-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-aws-architecture">Set Up AWS Architecture</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="AWS Account">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Results
+AWS Account
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Recommended resampling methods in order: k-fold CV, 2. Repeated k-fold CV, 3. Monte Carlo and bootstrap not recommended as general-purpose resampling.</p></li>
-<li><p>With Monte Carlo and boostrap, in most cases 50 reps significantly increased performance. In cross-validation resampling the 50 rep showed significantly better performance</p></li>
-<li><p>The results indicate that repeated CV is a better performer than single-run CV and the general recommendation is to use 10-fold CV 5 reps across a wide range of dataset sizes and types.</p></li>
-<li><p>For samller datasets increasing <span class="math inline">\({k}\)</span> beyond 10 folds resulted in pooer performance as for large datasets (greater than 1000 rows), performance was improved.</p></li>
-<li><p>No strong conclusions or recommendations due to an insignificant/slight advance of bootrap over Monte Carlo</p></li>
-</ol>
+<p>The process of creating AWS account is omitted in this document.</p>
 </div>
 </div>
-<section id="ridge-regression-model" class="level3">
-<h3 class="anchored" data-anchor-id="ridge-regression-model">Ridge regression model</h3>
-<p>In regression model where Y is the target (response) variable and X_1, X_2, ..XP are feature (independent) variables, our goal is to find _beta coefficients that minimize the SSE in OLS. Linear model could have an overfitting problem.</p>
-<p>To deal with overfitting issue in linear models, the ridge regression model was used to apply regularization. The penality term was added to the SSE equation.</p>
-<p><span class="math display">\[
-\text{SSE} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p} ({\beta}_j^2)
-\]</span></p>
-<p>The ridge regression model and MSE are used to find the lambda estimate. Data set is split into a training and validation sets where training set is used for parameter estimation and the validation set for evaluating overfit. One split of a dataset could create bias in MSE thus resampling methods are used to obtain MSE estimates.</p>
-<p>Regularization results in shiriking the <span class="math inline">\(\beta_j\)</span> toward 0 as <span class="math inline">\(\lambda\)</span> becomes large (or <span class="math inline">\(\beta\)</span> is same when <span class="math inline">\(\lambda\)</span> =0).</p>
+<section id="create-vpc-using-the-template-config-file" class="level3">
+<h3 class="anchored" data-anchor-id="create-vpc-using-the-template-config-file">Create VPC using the template config file</h3>
+<ul>
+<li>Download VPC template from the satern cloud website, or <a href="https://drive.google.com/open?id=1MAE0eeXICRHiGe3TsoJmboGbq5JHC7fN&amp;usp=drive_copy">amazon-eks-vpc-private-subnets.yaml</a></li>
+<li>Go to AWS Cloud Formation Console and create VPC using the downloaded template</li>
+</ul>
 </section>
-<section id="resampling-methods" class="level3">
-<h3 class="anchored" data-anchor-id="resampling-methods">Resampling methods</h3>
-<section id="monte-carlo" class="level4">
-<h4 class="anchored" data-anchor-id="monte-carlo">Monte Carlo</h4>
-<p>(Other names: repeated learning-testing, repeated holdout, random subsampling)</p>
-<p>Monte Carlo sampling randomly shuffles the dataset (randomizing rows) and select the first 75% to be a training set and the remaining 25% as a validation set. This is sampling without replacement.<br>
-<strong>The validation error</strong> is averaged over n repetitions.</p>
+<section id="install-kubectrl" class="level3">
+<h3 class="anchored" data-anchor-id="install-kubectrl">Install <code>kubectrl</code></h3>
+<ul>
+<li>Either in Cloud9 or your local terminal</li>
+</ul>
+<pre><code>curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl</code></pre>
 </section>
-<section id="bootstrap" class="level4">
-<h4 class="anchored" data-anchor-id="bootstrap">Bootstrap</h4>
-<p>Similar to Monte Carlo sampling where data are randomly selected from the dataset but with replacement.<br>
-<strong>The validation error</strong> is averaged over n repetitions.</p>
+<section id="install-helm" class="level3">
+<h3 class="anchored" data-anchor-id="install-helm">Install <code>helm</code></h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Jupyterhub didn’t work with lower version of <code>helm</code>.</p>
+</div>
+</div>
+<pre><code>curl https://raw.githubusercontent.com/helm/helm/HEAD/scripts/get-helm-3 | bash
+helm version
+
+helm upgrade --cleanup-on-fail \
+--install YOUR_RELEASE jupyterhub/jupyterhub \
+--namespace YOUR_NS \
+--create-namespace --version='3.2.0' 
+--values config.yaml \</code></pre>
 </section>
-<section id="k-fold-cv-cross-validation" class="level4">
-<h4 class="anchored" data-anchor-id="k-fold-cv-cross-validation">k-fold CV (Cross-validation)</h4>
-<p>A dataset is divided into k partition at random (most commonly k=5 or 10). One partition is held out (set aside) as a validation set, and the remaining k-1 partitions of data are used as a training set. __The validation error_ is averaged over k repetitions.</p>
-<p><strong>Most extreme case</strong> of k-fold CV, known as LOOCV (Leave One Out CV) is k = n where 1 observation is held out at each iteration.</p>
+<section id="create-iam-role-and-user-iam" class="level3">
+<h3 class="anchored" data-anchor-id="create-iam-role-and-user-iam">Create IAM Role and User (IAM)</h3>
+<ul>
+<li>Go to IAM (Identity Access Management) Console</li>
+<li>Create IAM Role
+<ul>
+<li>Select Usercase: <strong>eksCluster</strong>, Name: my-eks-role</li>
+<li>For policies:
+<ul>
+<li>Usercase: <strong>EC2</strong> and attach the following:
+<ul>
+<li><strong>AmazonEKSWorkerNodePolicy</strong></li>
+<li><strong>AmazonEC2ContainerRegistryReadOnly</strong></li>
+<li><strong>AmazonEKS_CNI_Policy</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Create IAM User
+<ul>
+<li>Select <strong>Attach policies directly</strong></li>
+<li>Username : my-user; Select <strong>AdminAccess</strong></li>
+<li>Download Access key to your desktop</li>
+</ul></li>
+</ul>
 </section>
-<section id="repeated-k-fold-cv" class="level4">
-<h4 class="anchored" data-anchor-id="repeated-k-fold-cv">repeated k-fold CV</h4>
-<p>k-fold CV is done over n repetition and obtain <span class="math inline">\({n} x {k}\)</span> validation errors.<br>
-<strong>The validation error</strong> is averaged over <span class="math inline">\({n} \times {k}\)</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="create-cluster-eks" class="level3">
+<h3 class="anchored" data-anchor-id="create-cluster-eks">Create Cluster (EKS)</h3>
+<ul>
+<li>Go to Cluster (EKS) Console and Create EKS cluster
+<ul>
+<li><p>use default values for data entry</p></li>
+<li><p>Cluster servic role - eks role created</p></li>
+<li><p>Cluster authentication mode: select EKS API and ConfigMap</p></li>
+<li><p>Select Your VPC and Public and private endpoint</p></li>
+<li><p>Leave security group empty</p></li>
+<li><p>Endpoint access - public and private</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="create-cluster-node-group" class="level3">
+<h3 class="anchored" data-anchor-id="create-cluster-node-group">Create Cluster node group</h3>
+<ul>
+<li>Select “Compute” from the cluster page</li>
+<li>Select add node role created<br>
+</li>
+<li>Node IAM role: node group<br>
+</li>
+<li>select instance type for a node
+<ul>
+<li>AMI type: amazone linux</li>
+<li>on-demand</li>
+<li>t3.medium</li>
+<li>disk size: 20GiB</li>
+<li>node size (desired, min and max)</li>
+</ul></li>
+</ul>
+</section>
+<section id="configure-iam-for-cluster-access" class="level3">
+<h3 class="anchored" data-anchor-id="configure-iam-for-cluster-access">Configure IAM for cluster access</h3>
+<p>This step is to set up IAM role and user for cluster access</p>
+<ul>
+<li>From the cluster created, copy <strong>OpenID Connect provider URL</strong> from Cluster</li>
+<li>Go to <strong>IAM</strong> Console</li>
+<li>Select Identity Providers under IAM and OpenID Connect and copy the URL
+<ul>
+<li>Audience: sts.amazonaws.com</li>
+<li>Storage Configuration, Access -&gt; Configure IAM access entry -&gt; Select my-user (whatever you set up as iam user)</li>
+<li>IAM principal ARN</li>
+<li>Audience: sts.amazonaws.com</li>
+</ul></li>
+</ul>
+</section>
+<section id="create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage" class="level3">
+<h3 class="anchored" data-anchor-id="create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage">Create Web identity role for cluster to access EBS (Elastic Block Storage)</h3>
+<ul>
+<li>Go to the IAM Console</li>
+<li>Create IAM role (ebs-role)</li>
+<li>Select Web Identity</li>
+<li>Select aws add and <strong>sts.amazonaws</strong></li>
+<li>Select <strong>AmazonEBSCSIDriverPolicy</strong>, <strong>Amazon EBS CSI Driver operator</strong></li>
+<li>Go to Add-On and add <strong>AmazonEBS</strong>
+<ul>
+<li><strong>Access</strong> : select my-user, <strong>Policy</strong>: <strong>EKSClusterAdmin</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="create-node-group-on-your-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="create-node-group-on-your-cluster">Create node group on your cluster</h3>
+<ul>
+<li>Go to EKS Cluster Console</li>
+<li>Make all values node=1 and max to =2 (up to your requirement)</li>
+<li>Select <strong>EC2Role</strong></li>
+</ul>
+</section>
+<section id="create-efs-file-system" class="level3">
+<h3 class="anchored" data-anchor-id="create-efs-file-system">Create EFS file system</h3>
+<ul>
+<li>Go to EFS Console</li>
+<li>Select your VPC</li>
+<li>Create</li>
+</ul>
+</section>
+<section id="add-ebs-addon-to-our-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="add-ebs-addon-to-our-cluster">Add EBS Addon to our Cluster</h3>
+<ul>
+<li>Click on Addon on your Cluster</li>
+<li>Click on more Addon and select Amazon EBS CSI Driver Info</li>
+<li>Select ebs-role</li>
+</ul>
+</section>
+<section id="access-cluster" class="level3">
+<h3 class="anchored" data-anchor-id="access-cluster">Access cluster</h3>
+<ul>
+<li>In your terminal or Cloud9, add ACCESS information downloaded earlier.</li>
+</ul>
+<pre><code>export AWS_ACCESS_KEY_ID=[ADD YOURS]
+export AWS_SECRET_ACCESS_KEY=[ADD YOURS]
+export AWS_DEFAULT_REGION=[YOUR REGION]
+
+aws sts get-caller-identity
+aws eks update-kubeconfig --region your_region --name name_of_your_cluster</code></pre>
+<pre><code>kubectl get svc
+Kubectl get node
+</code></pre>
+</section>
+<section id="upgrade-helm-and-install-docker" class="level3">
+<h3 class="anchored" data-anchor-id="upgrade-helm-and-install-docker">Upgrade helm and install docker</h3>
+<pre><code>helm upgrade --cleanup-on-fail \
+--install noaa-release jupyterhub/jupyterhub \
+--namespace noaa \
+--create-namespace \
+--version='3.2.0' \
+--values config_basic_docker.yaml \
+--debug
+</code></pre>
+</section>
+<section id="connect-to-jupyterhub" class="level3">
+<h3 class="anchored" data-anchor-id="connect-to-jupyterhub">Connect to JupyterHub</h3>
+<pre><code>kubectl --namespace your_namespace get service proxy-public</code></pre>
+</section>
+</section>
+</section>
+<section id="terminal-jupyterhub-setup" class="level1">
+<h1>Terminal JupyterHub Setup</h1>
+<section id="delete-eks-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="delete-eks-cluster">Delete EKS Cluster</h2>
+<ul>
+<li>delete cluster node group first</li>
+<li>delete eks cluster</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -256,22 +396,16 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>most commonly use k=fold CV only once (rep =1) and repeated method is suggested as a way of obtaining more accurate and reliable estimates of error rates</p>
+<p>EBS should be deleted as cluster is terminated.</p>
+<p>TODO: verify</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled" title="TODO">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>create a section describing results based on data size.</p>
-</div>
-</div>
+</section>
+<section id="delete-efs" class="level2">
+<h2 class="anchored" data-anchor-id="delete-efs">Delete EFS</h2>
+<ul>
+<li>Go to EFS file system and Delete EFS</li>
+</ul>
 
 
 </section>
