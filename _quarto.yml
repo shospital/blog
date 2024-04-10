@@ -12,6 +12,5 @@ format:
   html:
     theme: minty
     css: styles.css
-
-
-
+    toc: true
+    code-link: true

@@ -1,0 +1,135 @@
+---
+title: "Note: PyCascades 2024"
+description: "Personal note of the presentations and some lessons learned"
+author: "Sunny Hospital"
+date: "2024-04-10"
+categories: ["workshops", "openscience", "python"]
+image: "cat.jpeg"
+draft: false
+---
+
+## PyCascade 2024 
+
+
+### Types? in Python 
+
+* Typing concepts/categories
+    * strongly vs weakly ("loosely") 
+    * dynamically vs statically 
+    * Duck typing and use of dunder
+
+* Python best practices
+    * Python likes protocols/strongly type (type hinting/duck typing) 
+    * Annotate it as concrete as possible
+    * Declarative data Types
+
+    ``` 
+        def func() -> list:  
+        def func() -> list[str]:
+    ```
+
+    * Permissive input types and strict return types
+    * Use standard libraries 
+    * If you are creating for publishing for other people, more typed the better 
+    * But.. if it doesn't work for you, don't do it. 
+
+### The Stories of the Infamous Bugs 
+
+From bugs, results and analysis of the bugs, we can learn so much 
+and improve coding practices. The speaker presented 3 major 
+bugs with corresponding results and reasons.
+
+* ESA Ariane5 explosion: Loss of over 300mil dollars and research time 
+    * __Why__: function reused from 4th project in the 5th project 
+    with assumption and without examination. Backup system failed to work.
+    * __Lesson__ : we use software package for multiple projects 
+    without examining requirements.  
+
+* AT&T Long distance: simple update right before release triggered 
+malfunction remedy and kept being restarted 
+    * __Why__: "self healing" feature added without understanding 
+    the entire system and ramification
+    * __Lesson__: (sunnys note) documentation is important for collaborators
+
+* Patrio sysstem failure: Ground to air missle to intercept 
+in-coming missle failed and 28 killed and hundreds injured 
+    * __Why__: calculation of location failed due to not 
+    applying subroutine. Some error occurred but could not be replicated thus ignored.
+    * __Lesson__: when encounter errors, don't just ignore.  
+    find out what causes it. Test any edge case.  Human intervention and supervision when needed.
+
+### Intro to Introspection 
+
+Talk was about the concept of introspection in python and functions to examine.  
+(sunny) It may be a good practice to write a set of important methods for introspection.
+
+* ```help()```	It is used it to find what other functions do
+* ```hasattr()```	Checks if an object has an attribute
+* ```getattr()```	Returns the contents of an attribute if there are some.
+* ```repr()```	Return string representation of object
+* ```callable()```	Checks if an object is a callable object (a function)or not.
+* ```issubclass()```	Checks if a specific class is a derived class of another class.
+* ```isinstance()```	Checks if an objects is an instance of a specific class.
+* ```sys()```	Give access to system specific variables and functions
+* ```__doc__```	Return some documentation about an object
+* ```__name__```	Return the name of the object.
+
+### JupyRest : Deploy notebook as web services 
+* jupyternotebook as serverless
+* example shows a web service deployed on fastAPI framework on Azure 
+
+### MLOps
+
+* MLOps life cycle includes data prep, model train, evaluation, deployment, monitoring, and maintenance. 
+* Why use MLOps? 
+    * to speed deployment process 
+    * to enhance collaboration 
+    * to make it scalable 
+    * to support governance
+    * for continuous training
+
+* Challenges faced with just model versioning to track and manage over time
+    * components: artifact, version
+    * storage overhead
+    * complex dependencies 
+    * Data issues: when data drift occurs, there's a change in distribution of model based on input data, degrading performance 
+
+* Detection methods - Stat test/Performance monitoring/Visualization
+    * Performance monitoring 
+        * Catch issues early 
+        * Create metrics with accuracy, latency/throughput, business metrics, user engagement, etc. 
+    * Set alert notificiation 
+    * Create a dashboard 
+
+* Continuous Training 
+    * Regular updatres of model to adapt to new data patterns
+    * Auto retraining/incremental learning 
+
+* Collaboration -  in all levels (data science, data/software engineering, devOps)
+
+* Best practices 
+    * Start small to scale 
+    * Embrace experiment
+    * Focus on quality data
+    * Security and compliance
+    * Continuous monitoring/retrain 
+    * Right tools
+
+### PyGame for game developer
+Presenter demonstrated creation of pygame and how easy it can be to create a quick and simple graphic with a moving object using ```pygame``` package.
+
+:::{.callout-warning title="TODO"}
+More talks to cover
+
+* python & rust 
+* pyscript 
+* using K-means to play with the colors of photos 
+* lightning talks
+* GraphQL Operations 
+* Reproducibility with and without docker
+* API + cli 
+* Notably inaccessible (Jupyter)
+* circuit python (microcontroller)
+* containerizing python
+
+:::
