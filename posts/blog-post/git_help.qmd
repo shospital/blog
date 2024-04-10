@@ -1,0 +1,20 @@
+---
+title: "Git cheatsheet"
+description: "something new I learn about git"
+author: "Sunny Hospital"
+date: "2024-04-10"
+categories: ["git", "openscience"]
+image: "cat.jpeg"
+draft: true
+---
+
+
+```
+git reset --soft HEAD~3
+```
+
+
+```
+git revert
+```
+

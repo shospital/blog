@@ -1,6 +1,6 @@
 ---
-title: "Note: PyCascades 2024"
-description: "Personal note of the presentations and some lessons learned"
+title: "PyCascades 2024"
+description: "Personal notes on the presentations and lessons learned"
 author: "Sunny Hospital"
 date: "2024-04-10"
 categories: ["workshops", "openscience", "python"]
