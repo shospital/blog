@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -148,7 +148,44 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#set-up-jupyterhub-on-aws" id="toc-set-up-jupyterhub-on-aws" class="nav-link active" data-scroll-target="#set-up-jupyterhub-on-aws">Set up JupyterHub on AWS</a>
+  <ul class="collapse">
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a>
+  <ul class="collapse">
+  <li><a href="#project-requirements" id="toc-project-requirements" class="nav-link" data-scroll-target="#project-requirements">Project Requirements</a></li>
+  <li><a href="#aws-service-requirements" id="toc-aws-service-requirements" class="nav-link" data-scroll-target="#aws-service-requirements">AWS Service Requirements</a></li>
+  </ul></li>
+  <li><a href="#set-up-aws-architecture" id="toc-set-up-aws-architecture" class="nav-link" data-scroll-target="#set-up-aws-architecture">Set Up AWS Architecture</a>
+  <ul class="collapse">
+  <li><a href="#create-vpc-using-the-template-config-file" id="toc-create-vpc-using-the-template-config-file" class="nav-link" data-scroll-target="#create-vpc-using-the-template-config-file">Create VPC using the template config file</a></li>
+  <li><a href="#install-kubectrl" id="toc-install-kubectrl" class="nav-link" data-scroll-target="#install-kubectrl">Install <code>kubectrl</code></a></li>
+  <li><a href="#install-helm" id="toc-install-helm" class="nav-link" data-scroll-target="#install-helm">Install <code>helm</code></a></li>
+  <li><a href="#create-iam-role-and-user-iam" id="toc-create-iam-role-and-user-iam" class="nav-link" data-scroll-target="#create-iam-role-and-user-iam">Create IAM Role and User (IAM)</a></li>
+  <li><a href="#create-cluster-eks" id="toc-create-cluster-eks" class="nav-link" data-scroll-target="#create-cluster-eks">Create Cluster (EKS)</a></li>
+  <li><a href="#create-cluster-node-group" id="toc-create-cluster-node-group" class="nav-link" data-scroll-target="#create-cluster-node-group">Create Cluster node group</a></li>
+  <li><a href="#configure-iam-for-cluster-access" id="toc-configure-iam-for-cluster-access" class="nav-link" data-scroll-target="#configure-iam-for-cluster-access">Configure IAM for cluster access</a></li>
+  <li><a href="#create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage" id="toc-create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage" class="nav-link" data-scroll-target="#create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage">Create Web identity role for cluster to access EBS (Elastic Block Storage)</a></li>
+  <li><a href="#create-node-group-on-your-cluster" id="toc-create-node-group-on-your-cluster" class="nav-link" data-scroll-target="#create-node-group-on-your-cluster">Create node group on your cluster</a></li>
+  <li><a href="#create-efs-file-system" id="toc-create-efs-file-system" class="nav-link" data-scroll-target="#create-efs-file-system">Create EFS file system</a></li>
+  <li><a href="#add-ebs-addon-to-our-cluster" id="toc-add-ebs-addon-to-our-cluster" class="nav-link" data-scroll-target="#add-ebs-addon-to-our-cluster">Add EBS Addon to our Cluster</a></li>
+  <li><a href="#access-cluster" id="toc-access-cluster" class="nav-link" data-scroll-target="#access-cluster">Access cluster</a></li>
+  <li><a href="#upgrade-helm-and-install-docker" id="toc-upgrade-helm-and-install-docker" class="nav-link" data-scroll-target="#upgrade-helm-and-install-docker">Upgrade helm and install docker</a></li>
+  <li><a href="#connect-to-jupyterhub" id="toc-connect-to-jupyterhub" class="nav-link" data-scroll-target="#connect-to-jupyterhub">Connect to JupyterHub</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#terminal-jupyterhub-setup" id="toc-terminal-jupyterhub-setup" class="nav-link" data-scroll-target="#terminal-jupyterhub-setup">Terminal JupyterHub Setup</a>
+  <ul class="collapse">
+  <li><a href="#delete-eks-cluster" id="toc-delete-eks-cluster" class="nav-link" data-scroll-target="#delete-eks-cluster">Delete EKS Cluster</a></li>
+  <li><a href="#delete-efs" id="toc-delete-efs" class="nav-link" data-scroll-target="#delete-efs">Delete EFS</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
