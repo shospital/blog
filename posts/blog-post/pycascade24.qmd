@@ -134,6 +134,7 @@ More talks to cover
 * Notably inaccessible (Jupyter)
 * circuit python (microcontroller)
 * containerizing python
+* CircuitPython for microcontrollers
 * sprint (py opensci)
 
 Other topics 
