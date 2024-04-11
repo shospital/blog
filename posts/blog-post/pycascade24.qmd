@@ -121,15 +121,24 @@ Presenter demonstrated creation of pygame and how easy it can be to create a qui
 :::{.callout-warning title="TODO"}
 More talks to cover
 
+* problem solving by dissolution (Grothendieck and Jean-Pierre Serre, author of [A Course in Arithmatic in pdf](https://www.math.purdue.edu/~jlipman/MA598/Serre-Course%20in%20Arithmetic.pdf)) 
+* more on dunder
+* testing with playwright
 * python & rust 
 * pyscript 
 * using K-means to play with the colors of photos 
-* lightning talks
+* lightning talks (nasa earth data, quarto from posit developer)
 * GraphQL Operations 
 * Reproducibility with and without docker
 * API + cli 
 * Notably inaccessible (Jupyter)
 * circuit python (microcontroller)
 * containerizing python
+* sprint (py opensci)
+
+Other topics 
+
+* https://temporal.io. perhaps solution for error handling when requesting data through erddap? open source/can be used with php, python, java, etc.
+* casual talk with fellow attendee on github rebase and grouping commits and random forest algorithm
 
 :::
