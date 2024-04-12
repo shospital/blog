@@ -2,16 +2,17 @@
 title: "PyCascades 2024"
 description: "Personal notes on the presentations and lessons learned"
 author: "Sunny Hospital"
-date: "2024-04-10"
+date: "2024-04-12"
 categories: ["workshops", "openscience", "python"]
 image: "cat.jpeg"
 draft: false
 ---
 
 ## PyCascade 2024 
-
+[PyCascades 2024](https://2024.pycascades.com/)
 
 ### Types? in Python 
+Speaker Piper Thunstrom
 
 * Typing concepts/categories
     * strongly vs weakly ("loosely") 
@@ -34,6 +35,7 @@ draft: false
     * But.. if it doesn't work for you, don't do it. 
 
 ### The Stories of the Infamous Bugs 
+Presenter: Ian Zelikman
 
 From bugs, results and analysis of the bugs, we can learn so much 
 and improve coding practices. The speaker presented 3 major 
@@ -59,6 +61,7 @@ in-coming missle failed and 28 killed and hundreds injured
     find out what causes it. Test any edge case.  Human intervention and supervision when needed.
 
 ### Intro to Introspection 
+Presenter: Jeremiah Paige
 
 Talk was about the concept of introspection in python and functions to examine.  
 (sunny) It may be a good practice to write a set of important methods for introspection.
@@ -79,6 +82,7 @@ Talk was about the concept of introspection in python and functions to examine.
 * example shows a web service deployed on fastAPI framework on Azure 
 
 ### MLOps
+Presenter: Mayank Jindal 
 
 * MLOps life cycle includes data prep, model train, evaluation, deployment, monitoring, and maintenance. 
 * Why use MLOps? 
@@ -116,15 +120,56 @@ Talk was about the concept of introspection in python and functions to examine.
     * Right tools
 
 ### PyGame for game developer
+Presenter: Drishti Jain 
+
 Presenter demonstrated creation of pygame and how easy it can be to create a quick and simple graphic with a moving object using ```pygame``` package.
+
+### Math &cup; Programming 
+Presenter: Matthew Drury [](https://github.com/madrury){.bi-github}
+
+Problem Solving by Dissolution 
+
+Alexander Grothendieck and his student Pierre Deligne are renowned mathematicians. This talk explores their unique philosophy and approach to problem solving. 
+
+* __Structural Development Over Strenuous Effort__:  
+Problems are best solved not through strenuous effort, 
+but by gradually building a structure and theory from 
+which the problem naturally dissipates.
+
+* __Simplicity in Understanding__:  Solution should be not celebrated by its difficulty but ability to be understood. 
+_"I have also learned not to take glory in the difficulty of 
+a proof: difficulty means we have not understood. 
+The ideal is to be able to paint a landscape in which the proof is obvious." - Pierre Deligne_
+
+* __Modeling Problem in Detail__:
+Approach problems by modeling them in sufficient detail instead of writing difficult codes so that the solutions become self-evident. 
+
+* __Data Organization__:  Even with messing coding problems, once data are organized into clean data 
+structures, coding can be cleaner and more transparent.
+
+* __Analogy of Peeling an Onion__: Messy part can be the outer layers where code is dealing with "outside world".  But the core of your code should be *well-organized* with clear data structures and self-evident operations. 
+
+Resource: Jean-Pierre Serre, author of [A Course in Arithmatic in pdf](https://www.math.purdue.edu/~jlipman/MA598/Serre-Course%20in%20Arithmetic.pdf)) 
+
+### Python and Rust 
+Presenter: Trent H.
+
+Best Language to write Python  is in Rust 
+
+* demonstrated the performance bewteen Polars (in rust) vs Pandas (in python) - 11 sec and 300 sec respectively.
+* Few Rust python packages: Polars, Pydantics, Ruff 
+* Why Rust? Speed and ease of implmentation and distributiion 
+* Rust is an unforgiving language!  
+* Workflow example: 
+    * write Rust code -> create and call from Python module 
+* Basic idea: Argument ```FromPyObject``` into Rust, and Return ```IntoPyObject```
+    * PyResult is a result layer of [Py03](https://pyo3.rs/v0.21.1/)
 
 :::{.callout-warning title="TODO"}
 More talks to cover
 
-* problem solving by dissolution (Grothendieck and Jean-Pierre Serre, author of [A Course in Arithmatic in pdf](https://www.math.purdue.edu/~jlipman/MA598/Serre-Course%20in%20Arithmetic.pdf)) 
 * more on dunder
 * testing with playwright
-* python & rust 
 * pyscript 
 * using K-means to play with the colors of photos 
 * lightning talks (nasa earth data, quarto from posit developer)
