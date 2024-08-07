@@ -1,0 +1,21 @@
+---
+title: "Python Iterators, Iterables, Asynchronous"
+description: "something new I learn about git"
+author: "Sunny Hospital"
+date: "2024-04-10"
+categories: ["python"]
+image: "cat.jpeg"
+draft: true
+---
+
+ ## What is Iterator in Python
+
+an iterator is an object that allows you to iterate over a collection of data and returns 
+one item at a time and keeps track of the current state.
+
+## What Is the Python Iterator Protocol?
+While there are iterator objects, you can also create iterator for your custom class by implementing two special methods called iterator protocol.
+
+```.__iter__()``` to intialize the iterator and return an interator object (self)
+```.__next__()``` to iterate over iterator and will return the next value  and raise an except ```StopIteration``` for the end of the collection.
+
