@@ -1,0 +1,53 @@
+---
+title: "Deep learning Basic- Time series RNN"
+description: "Note summary from Deep Learning with Python from Francois Chollet"
+author: "Sunny Hospital"
+date: "2024-04-10"
+categories: ["data science",  "python"]
+image: "cat.jpeg"
+draft: true
+---
+
+## Prepare datasets
+
+* Training - 50%, validation/test = 25%/25%
+* It's important to ues validation and test data that is more recent than the training since 
+the goal is predicting for the future
+
+
+## Keras APIs 
+
+The main data structure in NN is the layer, the building block of deep learning. 
+
+### Layers
+Some layers are stateless but mostly layeers have a state: weights and learned with gradient descent.
+
+A Layer is an object that encapsulates some state (weights) and some computations (a forward pass).  
+
+### types of layers
+* fully connected layers (dense layers) : simple vector data stored in rank-2 tensors of shape (samples, features)
+* sequence data stored in rank-3 tensors of shape (samples, timesteps, features) is processed by recurrent layers )LSTM) layer.
+* Image data, stored in rank-4 tensors, processed by 2D convolution layers (Conv2D)
+
+__Simple Dense layer example__
+
+``` 
+from tensorflow import keras
+
+class SimpleDense(keras.layers.Layer):
+    def __init(self, units, actgivate=None):
+        super().__init__()
+        self.units = unitsself.activation = activation
+    
+    def build(self, input_shape):
+        input_dim = input_shape[-1]
+        self.W = self.add_weight(shape = (input_dim, self.units),
+                                initializer = "random_normal")
+        self.b = self.add_weight(shape = (self.units,) ,
+                                initializer = "zeros")
+
+    def call(self, inputs):
+        y = tf.matmul(inputs, self.W)+ self.b
+        if self.activation is not None:
+            y = self.activateion(y)
+            return you

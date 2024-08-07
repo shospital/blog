@@ -1,0 +1,400 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{HTML}{245ABE}}{}
+\makeatother
+\makeatletter
+\@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{f8f8f8}}{}
+\makeatother
+\makeatletter
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, borderline west={3pt}{0pt}{shadecolor}, enhanced, colback={codebgcolor}, frame hidden, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Python Iterators, Iterables, Asynchronous},
+  pdfauthor={Sunny Hospital},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Python Iterators, Iterables, Asynchronous}
+\author{Sunny Hospital}
+\date{2024-04-10}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+Summary Note from RealPython
+(https://realpython.com/python-iterators-iterables/)
+\end{frame}
+
+\begin{frame}[fragile]{Create iterators using the iterator protocol}
+\phantomsection\label{create-iterators-using-the-iterator-protocol}
+\textbf{What is Iterator in Python}
+
+An iterator is an object that allows you to iterate over a collection of
+data and returns one item at a time and keeps track of the current
+state.
+
+\textbf{What Is the Python Iterator Protocol}
+
+While there are iterator objects, you can also create iterator for your
+custom class by implementing two special methods called iterator
+protocol.
+
+\texttt{.\_\_iter\_\_()} to intialize the iterator and return an
+interator object (self)
+
+\texttt{.\_\_next\_\_()} to iterate over iterator and will return the
+next value and raise an except \texttt{StopIteration} for the end of the
+collection.
+
+\textbf{Types of Iterators}
+
+Iterators can be used to perform various tasks: iterating over a
+collection of data to
+
+\begin{itemize}
+\tightlist
+\item
+  return each item
+\item
+  return transformed item
+\item
+  return newly generated item
+\end{itemize}
+
+\textbf{Iterator examples}
+
+\begin{verbatim}
+# Iterator example to return its own value
+class MyIterator:
+    def __init__(self, sequence):
+        self._sequence = seequence
+        self._index = 0
+
+    def __iter__(self):
+        return self 
+
+    def __next__(self):
+        if self._index < len(self._sequence):
+            item = self._sequence[self._index]
+            self._index += 1
+            return item
+        else 
+            raise StopIteeration 
+
+for item in MyIterator([1, 2, 3])
+    print(item)
+\end{verbatim}
+
+\begin{verbatim}
+# Iterator example to return transformed value
+class MySquare:
+
+    def __init__(self, sequence):
+        self._sequence = sequence
+        self._index = 0
+
+    def __iter__(self):
+        return self 
+    
+    def __next__(self):
+        if self._index < len(self._sequence):
+            square = self._sequence[self._index] ** 2
+            self._index += 1
+            return square 
+        else:
+            raise StopIteration
+\end{verbatim}
+
+\begin{verbatim}
+
+# Iterator example to return generated value
+class FibonacciIterator:
+    def __init__(self, stop=10):
+        self._stop = stop
+        self._index = 0
+        self._current = 0
+        self._next = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < self._stop:
+            self._index += 1
+            fib_number = self._current
+            self._current, self._next = (
+                self._next,
+                self._current + self._next,
+            )
+            return fib_number
+        else:
+            raise StopIteration
+\end{verbatim}
+
+You can create infinite iterator by skipping \texttt{StopIteration}
+\end{frame}
+
+\begin{frame}[fragile]{Create Generator iterators}
+\phantomsection\label{create-generator-iterators}
+\textbf{What is Generator Iterators}
+
+A generator iterator is a function based iterator and must use
+\texttt{yield}. It's simpler than class iterator.
+
+Generator iterator expression is similar to the list comprehension but
+with parenthesis instead of brackets.
+
+Similar to Iterator, Generator can also return item itself, transformed
+item, and new item
+
+\begin{verbatim}
+# Generator example to return its own value
+def myGeneratorIter(sequence):
+    for item in sequence:
+        yield(item)
+
+for i in myGeneratorIter([1, 2, 3])
+    print(i)
+
+# Generator expression 
+(item for item in [1, 2, 3]) # unlike list [], it uses ()
+
+genExpression = (item for item in [1, 2, 3])
+for i in genExpression:
+    print(i)
+
+
+# Generator example to return transformed value
+def SquareGenerator(sequence):
+    for item in sequence:
+        yield(item**2)
+
+for i in SquareGenerator([1,2,3])
+    print(i)
+    
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Memory efficient data processing}
+\phantomsection\label{memory-efficient-data-processing}
+\textbf{Benefits}
+
+\begin{itemize}
+\tightlist
+\item
+  You don't need to store all the data in the computer memory at the
+  same time.
+\item
+  It can decouple processing with data
+\item
+  Iterators are the only way to process infinite data streams
+\end{itemize}
+
+Regular functions or comprehensions for data processing create data
+structure such as a list and it stores data in memory at the same time.
+
+Iterators keep only one item in memory at a time, generating the next
+ones on demand or lazily.
+
+\textbf{Constraints} * You can't iterate over an iterator. Once
+StopIteration is raised, the iterator is exhausted. * You can only move
+forward, not backyard. You only have \texttt{\_\_next\_\_()}, not
+previous. * unlike lists and tuples, iterators don't allow indexing and
+slicing operations with the {[}{]} operator:
+
+\begin{verbatim}
+def square_list(sequence):
+    squares = []
+    for item in sequence:
+        squares.append(item**2)
+    return squares 
+\end{verbatim}
+
+\begin{block}{Creating pipeline with generator iterator}
+\phantomsection\label{creating-pipeline-with-generator-iterator}
+\begin{verbatim}
+def to_square(numbers):
+    return (number**2 for number in numbers)
+
+def to_cube(numbers):
+    return (number**3 for number in numbers)
+
+def to_even(numbers):
+    return (number for number in numbers if number % 2 == 0)
+
+def to_odd(numbers):
+    return (number for number in numbers if number % 2 != 0)
+
+def to_string(numbers):
+    return (str(number) for number in numbers)
+
+>>> import math_pipeline as mpl
+
+>>> list(mpl.to_string(mpl.to_square(mpl.to_even(range(20)))))
+['0', '4', '16', '36', '64', '100', '144', '196', '256', '324']
+
+>>> list(mpl.to_string(mpl.to_cube(mpl.to_odd(range(20)))))
+['1', '27', '125', '343', '729', '1331', '2197', '3375', '4913', '6859']
+\end{verbatim}
+\end{block}
+\end{frame}
+
+
+
+\end{document}

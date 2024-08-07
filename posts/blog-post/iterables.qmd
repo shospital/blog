@@ -2,20 +2,215 @@
 title: "Python Iterators, Iterables, Asynchronous"
 description: "something new I learn about git"
 author: "Sunny Hospital"
-date: "2024-04-10"
+date: "5/22/2021"
+date-modified: "5/23/2021"
 categories: ["python"]
 image: "cat.jpeg"
 draft: true
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
 ---
 
- ## What is Iterator in Python
+Summary Note from RealPython (https://realpython.com/python-iterators-iterables/)
 
-an iterator is an object that allows you to iterate over a collection of data and returns 
+
+
+## Create iterators using the iterator protocol
+__What is Iterator in Python__
+
+An iterator is an object that allows you to iterate over a collection of data and returns 
 one item at a time and keeps track of the current state.
 
-## What Is the Python Iterator Protocol?
+__What Is the Python Iterator Protocol__
+
 While there are iterator objects, you can also create iterator for your custom class by implementing two special methods called iterator protocol.
 
-```.__iter__()``` to intialize the iterator and return an interator object (self)
-```.__next__()``` to iterate over iterator and will return the next value  and raise an except ```StopIteration``` for the end of the collection.
+`.__iter__()` to intialize the iterator and return an interator object (self)
+
+`.__next__()` to iterate over iterator and will return the next value  and raise an except ```StopIteration``` for the end of the collection.
+
+
+__Types of Iterators__
+
+Iterators can be used to perform various tasks: iterating over a collection of data to
+
+* return each item 
+* return transformed item 
+* return newly generated item 
+
+
+__Iterator examples__
+
+```
+# Iterator example to return its own value
+class MyIterator:
+    def __init__(self, sequence):
+        self._sequence = seequence
+        self._index = 0
+
+    def __iter__(self):
+        return self 
+
+    def __next__(self):
+        if self._index < len(self._sequence):
+            item = self._sequence[self._index]
+            self._index += 1
+            return item
+        else 
+            raise StopIteeration 
+
+for item in MyIterator([1, 2, 3])
+    print(item)
+
+```
+
+
+```
+# Iterator example to return transformed value
+class MySquare:
+
+    def __init__(self, sequence):
+        self._sequence = sequence
+        self._index = 0
+
+    def __iter__(self):
+        return self 
+    
+    def __next__(self):
+        if self._index < len(self._sequence):
+            square = self._sequence[self._index] ** 2
+            self._index += 1
+            return square 
+        else:
+            raise StopIteration
+
+```
+
+```
+
+# Iterator example to return generated value
+class FibonacciIterator:
+    def __init__(self, stop=10):
+        self._stop = stop
+        self._index = 0
+        self._current = 0
+        self._next = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < self._stop:
+            self._index += 1
+            fib_number = self._current
+            self._current, self._next = (
+                self._next,
+                self._current + self._next,
+            )
+            return fib_number
+        else:
+            raise StopIteration
+```
+
+You can create infinite iterator by skipping `StopIteration` 
+
+## Create Generator iterators
+
+
+__What is Generator Iterators__
+
+A generator iterator is a function based iterator and must use `yield`. It's simpler than class iterator. 
+
+Generator iterator expression is similar to the list comprehension but with parenthesis 
+instead of brackets.
+
+
+Similar to Iterator, Generator can also return item itself, transformed item, and new item
+
+
+```
+# Generator example to return its own value
+def myGeneratorIter(sequence):
+    for item in sequence:
+        yield(item)
+
+for i in myGeneratorIter([1, 2, 3])
+    print(i)
+
+# Generator expression 
+(item for item in [1, 2, 3]) # unlike list [], it uses ()
+
+genExpression = (item for item in [1, 2, 3])
+for i in genExpression:
+    print(i)
+
+
+# Generator example to return transformed value
+def SquareGenerator(sequence):
+    for item in sequence:
+        yield(item**2)
+
+for i in SquareGenerator([1,2,3])
+    print(i)
+    
+```
+
+
+
+## Memory efficient data processing 
+
+__Benefits__
+
+* You don't need to store all the data in the computer memory at the same  time.
+* It can decouple processing with data
+* Iterators are the only way to process infinite data streams
+
+Regular functions or comprehensions for data processing create data structure such as a list 
+and it stores data in memory at the same time. 
+
+Iterators keep only one item in memory at a time, generating the next ones on demand or lazily.
+
+__Constraints__
+* You can't iterate over an iterator. Once StopIteration is raised, the iterator is exhausted.
+* You can only move forward, not backyard. You only have `__next__()`, not previous.
+* unlike lists and tuples, iterators don’t allow indexing and slicing operations with the [] operator:
+
+```
+def square_list(sequence):
+    squares = []
+    for item in sequence:
+        squares.append(item**2)
+    return squares 
+```
+
+### Creating pipeline with generator iterator 
+
+```
+def to_square(numbers):
+    return (number**2 for number in numbers)
+
+def to_cube(numbers):
+    return (number**3 for number in numbers)
+
+def to_even(numbers):
+    return (number for number in numbers if number % 2 == 0)
+
+def to_odd(numbers):
+    return (number for number in numbers if number % 2 != 0)
+
+def to_string(numbers):
+    return (str(number) for number in numbers)
+
+>>> import math_pipeline as mpl
+
+>>> list(mpl.to_string(mpl.to_square(mpl.to_even(range(20)))))
+['0', '4', '16', '36', '64', '100', '144', '196', '256', '324']
+
+>>> list(mpl.to_string(mpl.to_cube(mpl.to_odd(range(20)))))
+['1', '27', '125', '343', '729', '1331', '2197', '3375', '4913', '6859']
+
+```
+
 
