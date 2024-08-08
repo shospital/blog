@@ -1,0 +1,16 @@
+---
+title: "Resources for geospatial "
+description: "something new I learn about git"
+author: "Sunny Hospital"
+date: "5/22/2021"
+date-modified: "5/23/2021"
+categories: ["python", "geospatial", "data"]
+image: "cat.jpeg"
+draft: true
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+[Affine Transforms](https://pygis.io/docs/d_affine.html)
