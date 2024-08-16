@@ -5,7 +5,6 @@ author: "Sunny Hospital"
 date: "08/14/2024"
 categories: ["openscience"]
 image: "cat.jpeg"
-draft: true
 html:
     format:
         code-block-bg: true
