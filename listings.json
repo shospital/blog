@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/blog-post/posit-conf24.html",
       "/posts/blog-post/pycascade24.html",
       "/posts/blog-post/settingup_jh_aws.html",
       "/posts/blog-post/nco_cheatsheet.html",

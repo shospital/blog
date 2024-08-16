@@ -25,7 +25,35 @@
     "href": "index.html",
     "title": "Blog",
     "section": "",
-    "text": "PyCascades 2024\n\n\n\n\n\n\nworkshops\n\n\nopenscience\n\n\npython\n\n\n\nPersonal notes on the presentations and lessons learned\n\n\n\n\n\nApr 10, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nSet up JupyterHub on AWS\n\n\n\n\n\n\nopenscience\n\n\ncloud\n\n\n\nHow to set up JupyterHub on AWS (Amazon web services)\n\n\n\n\n\nApr 3, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\n{nco} cheatsheet\n\n\n\n\n\n\nnetcdf\n\n\nnco\n\n\n\nWorking with and nco tool\n\n\n\n\n\nApr 2, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nLit Review: Comparing resampling methods\n\n\n\n\n\n\nmachine learning\n\n\nliterature review\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nmachine learning\n\n\n\n\n\n\n\n\n\nMar 2, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\nNo matching items"
+    "text": "Take-away from Posit:Conf 2024\n\n\n\n\n\n\nopenscience\n\n\n\nWhat I’ve learned\n\n\n\n\n\nAug 14, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nPyCascades 2024\n\n\n\n\n\n\nworkshops\n\n\nopenscience\n\n\npython\n\n\n\nPersonal notes on the presentations and lessons learned\n\n\n\n\n\nApr 10, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nSet up JupyterHub on AWS\n\n\n\n\n\n\nopenscience\n\n\ncloud\n\n\n\nHow to set up JupyterHub on AWS (Amazon web services)\n\n\n\n\n\nApr 3, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\n{nco} cheatsheet\n\n\n\n\n\n\nnetcdf\n\n\nnco\n\n\n\nWorking with and nco tool\n\n\n\n\n\nApr 2, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nLit Review: Comparing resampling methods\n\n\n\n\n\n\nmachine learning\n\n\nliterature review\n\n\n\n\n\n\n\n\n\nMar 5, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nmachine learning\n\n\n\n\n\n\n\n\n\nMar 2, 2024\n\n\nSunny Hospital\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/blog-post/posit-conf24.html",
+    "href": "posts/blog-post/posit-conf24.html",
+    "title": "Take-away from Posit:Conf 2024",
+    "section": "",
+    "text": "This was my first Posit Conference, and I was eager to learn about new technologies and tools. Interestingly, what I enjoyed most were the keynotes and the spontaneous conversations during breaks.\nThe keynote speakers were inspirational, offering a big-picture perspective and motivations for pursuing a meaningful career path. The impromptu discussions with conference attendees—who came from diverse backgrounds gave me valuable insights, not just in data science, but in life.\nHaving had this wonderful opportunity to attend, I’d like to share a few key takeways. This blog isn’t about the specific topics covered in the conference session, but rather about what I took away from the overall experience."
+  },
+  {
+    "objectID": "posts/blog-post/posit-conf24.html#keynote-take-away",
+    "href": "posts/blog-post/posit-conf24.html#keynote-take-away",
+    "title": "Take-away from Posit:Conf 2024",
+    "section": "Keynote take-away",
+    "text": "Keynote take-away\nAt times work can settle into comfortable routines or become a pursuit of intellectual satisfaction. While goals and objectives guide our work and shape our workflows, I sometimes reflect on how I can make my work more meaningful.\n\nAsk the key question: How can we be innovative to make things better?\nWhatever I do, aim to contribute–even in small ways–to creating positive change.\nCreate Virtuous cycles to benefit everyone involved.\nOpen Science: Use data to understand the world better. Then we know how to make the world better\nNegative bias is a serious threat tot our well being and ability to address the problems we face\nWorking with people from different background can be challenging.\nAgree on a set of core values such as radical transparency, trust, respect, courage, commitment\nChatGPT is becoming widely used especially among the new generation of professionals. Asking for a code sample is no longer as relevant. What does the future hold? perhpas it lies with those who can ask the “right” questions to solve difficult problems."
+  },
+  {
+    "objectID": "posts/blog-post/posit-conf24.html#key-statiscal-and-machine-learning-tools",
+    "href": "posts/blog-post/posit-conf24.html#key-statiscal-and-machine-learning-tools",
+    "title": "Take-away from Posit:Conf 2024",
+    "section": "Key Statiscal and Machine Learning tools",
+    "text": "Key Statiscal and Machine Learning tools\n\n{marginaleffects} package for model comparisons. you write a comparison function and the package help to generate ggplot and other output to compare models.\nPrediction Intervals: github.com/brshallo/posit-2024, talked about different ways to construct and evaluate prediction intervals\n\nInterval width is widely used and good to evaluate if a model is improving as the width becomes narrow. (Constant variance desired)\nin Conformed prediction, the assumption is relaxed, and you compute upper and lower bands. (manokhin molar). Use train, calibration, and test datasets for estimating intervals.\n\nDeep learning: {keras3} allows the use of keras and tensorflow in python throough reticulate.\n\ncreate neural network architecture just like python keras.\noffers the interface to GPU.\nsave the models in *.keras to change the backend for different cycles. (save and read model)\ndistributed training\nkeras3.posit.co\n\n\n*Avoid garbage in/garbage out: Use interactive tool like shiny for data cleaning"
+  },
+  {
+    "objectID": "posts/blog-post/posit-conf24.html#tools-to-check-out",
+    "href": "posts/blog-post/posit-conf24.html#tools-to-check-out",
+    "title": "Take-away from Posit:Conf 2024",
+    "section": "Tools to check out",
+    "text": "Tools to check out\n\nWeb/Report publishing : Quarto Dashboard for web dashboard and quarto PDF using typst (faster than latex)\nEducation/Training : WebR/Quarto live for interactive web interface with programming language, ideal for training. It can be either a standalone web application or a code chunk in a quarto document.\nCloud Computing: Posit Workbench is a cloud computing and it handles infrastrcuture manageement and security requirements. It can be deployed in Posit:Connect.\nCloud and Collaboration: Github codespace for computing and sharing simultaneously and is free for # of hours and you can use docker image to set a virtual environment.\n{pins}: customizing and automating report generation and delivery"
   },
   {
     "objectID": "posts/blog-post/settingup_jh_aws.html",
