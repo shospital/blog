@@ -1,0 +1,71 @@
+---
+title: "Take-away from Posit:Conf 2024"
+description: "What I've learned"
+author: "Sunny Hospital"
+date: "08/14/2024"
+categories: ["openscience"]
+image: "cat.jpeg"
+draft: true
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+This was my first Posit Conference, and I was eager to learn about new technologies and tools. 
+Interestingly, what I enjoyed most were the keynotes and the spontaneous conversations during breaks.
+
+The keynote speakers were inspirational, offering a big-picture perspective and motivations 
+for pursuing a meaningful career path. 
+The impromptu discussions with conference attendees—who came from diverse backgrounds gave me valuable insights, 
+not just in data science, but in life.
+
+Having had this wonderful opportunity to attend, I'd like to share a few key takeways. This blog isn't about the specific
+topics covered in the conference session, but rather about what I took away from the overall experience.
+
+## Keynote take-away 
+
+At times work can settle into comfortable routines or become a pursuit of intellectual satisfaction.
+While goals and objectives guide our work and shape our workflows, I sometimes reflect on how I can make my work more 
+meaningful. 
+
+* Ask the key question: How can we be innovative to make things better?
+* Whatever I do, aim to contribute--even in small ways--to creating positive change.
+* Create Virtuous cycles to benefit everyone involved.
+
+* Open Science: Use data to understand the world better. Then we know how to make the world better 
+* Negative bias is a serious threat tot our well being and ability to address the problems we face 
+
+* Working with people from different background can be challenging.   
+Agree on a set of core values such as radical transparency, trust, respect, courage, commitment
+
+* ChatGPT is becoming widely used especially among the new generation of professionals.  Asking for a code sample is no longer as relevant. 
+What does the future hold? perhpas it lies with those who can ask the "right" questions to solve difficult problems. 
+
+
+## Key Statiscal and Machine Learning tools
+* __`{marginaleffects}`__ package for model comparisons. you write a comparison function 
+and the package help to generate ggplot and other output to compare models.
+* __Prediction Intervals__: github.com/brshallo/posit-2024, talked about different ways to construct and evaluate 
+prediction intervals
+    * Interval width is widely used and good to evaluate if a model is improving as the width becomes narrow. (Constant variance desired)
+    * in Conformed prediction, the assumption is relaxed, and you compute upper and lower bands. (manokhin molar).  Use train, calibration, and test datasets for estimating intervals.
+
+* __Deep learning__: `{keras3}` allows the use of keras and tensorflow in python throough `reticulate`.  
+    * create neural network architecture just like python keras.
+    * offers the interface to GPU. 
+    * save the models in *.keras to change the backend for different cycles. (save and read model)
+    * distributed training
+    * keras3.posit.co 
+
+*__Avoid garbage in/garbage out__: Use interactive tool like shiny for data cleaning
+
+
+## Tools to check out
+
+* __Web/Report publishing__ : Quarto Dashboard for web dashboard and quarto PDF using typst (faster than latex) 
+* __Education/Training__ : WebR/Quarto live for interactive web interface with programming language, ideal for training.  It can be either a standalone web application 
+or a code chunk in a quarto document. 
+* __Cloud Computing__: Posit Workbench is a cloud computing and it handles infrastrcuture manageement and security requirements. It can be deployed in Posit:Connect.
+* __Cloud and Collaboration__: Github codespace for computing and sharing simultaneously and is free for # of hours and you can use docker image to set a virtual environment. 
+* __`{pins}`__: customizing and automating report generation and delivery 
