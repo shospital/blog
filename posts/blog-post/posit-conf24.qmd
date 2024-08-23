@@ -5,6 +5,7 @@ author: "Sunny Hospital"
 date: "08/14/2024"
 categories: ["workshops", "openscience", "python", "R"]
 image: "cat.jpeg"
+draft: false
 html:
     format:
         code-block-bg: true
@@ -12,7 +13,7 @@ html:
 ---
 
 This was my first Posit Conference, and I was eager to learn about new technologies and tools. 
-Interestingly, what I enjoyed most were the keynotes and the spontaneous conversations during breaks.
+Interestingly, what I enjoyed most were the keynote speakers and the spontaneous conversations during breaks.
 
 The keynote speakers were inspirational, offering a big-picture perspective and motivations 
 for pursuing a meaningful career path. 
@@ -24,22 +25,26 @@ topics covered in the conference session, but rather about what I took away from
 
 ## Keynote take-away 
 
-At times work can settle into comfortable routines or become a pursuit of intellectual satisfaction.
-While goals and objectives guide our work and shape our workflows, I sometimes reflect on how I can make my work more 
-meaningful. 
+At times work can settle into comfortable routines or become a pursuit of personal intellectual satisfaction.
 
-* Ask the key question: How can we be innovative to make things better?
+While goals and objectives guide our work and shape our workflows, I often reflect on what the work truly means to me.  
+Some of the keynote messages resonated with me as questions i can ask myself.
+
+* How can we be innovative to make things better?
 * Whatever I do, aim to contribute--even in small ways--to creating positive change.
-* Create Virtuous cycles to benefit everyone involved.
+* Create Virtuous cycles to benefit everyone involved. Think of ways to reinvest my benefits back into the community
 
-* Open Science: Use data to understand the world better. Then we know how to make the world better 
-* Negative bias is a serious threat tot our well being and ability to address the problems we face 
+* Open Science: Use data to understand the world better. Then we know how to make it better 
+* Negative bias is a serious threat to our well-being and ability to address the problems we face 
 
 * Working with people from different background can be challenging.   
 Agree on a set of core values such as radical transparency, trust, respect, courage, commitment
 
-* ChatGPT is becoming widely used especially among the new generation of professionals.  Asking for a code sample is no longer as relevant. 
-What does the future hold? perhpas it lies with those who can ask the "right" questions to solve difficult problems. 
+## Sessions & Conversation take-away
+
+* Working with people from different backgrounds can be challenging. It's important to agree on a set of core values, such as radical transparency, trust, respect, courage, and commitment.
+
+* ChatGPT is becoming widely used, especially among the new generation of professionals. Traditional software engineering interviews often involve requesting code samples, but this practice is becoming less relevant as many candidates now use ChatGPT. What does the future hold? Perhaps it lies with those who can construct the “right” questions to solve difficult problems.
 
 
 ## Key Statiscal and Machine Learning tools
