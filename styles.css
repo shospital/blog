@@ -1,5 +1,18 @@
 /* css styles */
 
-// Code blocks
-code-block-bg: true
-code-block-border-left: "#31BAE9"
+
+
+pre {
+    background-color: #f4f4f4;  /* Light gray background */
+    border: 1px solid #ddd;     /* Optional border */
+    padding: 10px;              /* Add some padding */
+    border-radius: 5px;         /* Optional: Rounded corners */
+    overflow-x: auto;           /* Horizontal scrolling for long code */
+  }
+
+
+  code {
+    background-color: #f4e3c2;  /* Make inline code match the background */
+    padding: 2px 4px;           /* Padding for inline code */
+    border-radius: 3px;         /* Rounded corners for inline code */
+  }
