@@ -1,0 +1,28 @@
+---
+title: "JS Docs"
+description: "How I use it to organize and view existing javascript files"
+author: "Sunny Hospital"
+date: "09/06/2024"
+categories: ["documentation", "javascript"]
+image: "cat.jpeg"
+draft: false
+format: html
+
+---
+
+I find javascript files difficult to read and follow especially when they were written by someone else and your job is to modify or fix 
+what isn't working.  Often the script contains thousands of lines and it's unclear which objects the javascript actions are applied to.
+
+There are some good comments in the scripts but not in a consistent format recommended by standards.  In this situation, I find it easy to first 
+generate web-based documents using JSDoc and start from there.
+
+Since I don't the admin access, I downloaded and installed locally
+``` 
+npm install jsdoc
+jsdocs myjavascript.js
+```
+
+This created a webpage reference to all functions with any comments or annotations.
+
+
+
