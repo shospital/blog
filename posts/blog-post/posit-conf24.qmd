@@ -16,7 +16,7 @@ This was my first Posit Conference, and I was eager to learn about new technolog
 Interestingly, what I enjoyed most were the keynote speakers and the spontaneous conversations during breaks.
 
 The keynote speakers were inspirational, offering a big-picture perspective and motivations 
-for pursuing a meaningful career path. 
+for pursuing a meaningful career. 
 The impromptu discussions with conference attendees—who came from diverse backgrounds gave me valuable insights, 
 not just in data science, but in life.
 
@@ -46,7 +46,6 @@ Agree on a set of core values such as radical transparency, trust, respect, cour
 
 * ChatGPT is becoming widely used, especially among the new generation of professionals. Traditional software engineering interviews often involve requesting code samples, but this practice is becoming less relevant as many candidates now use ChatGPT. What does the future hold? Perhaps it lies with those who can construct the “right” questions to solve difficult problems.
 
-
 ## Key Statiscal and Machine Learning tools
 * __`{marginaleffects}`__ package for model comparisons. you write a comparison function 
 and the package help to generate ggplot and other output to compare models.
@@ -66,8 +65,8 @@ prediction intervals
 
 
 ## Tools to check out
-
 * __Web/Report publishing__ : Quarto Dashboard for web dashboard and quarto PDF using typst (faster than latex) 
+* __Typst__ : Does Design Matter? Studies show aesthetically pleasant design make things more useful and builds trust.  Make reports beautiful, reproducible, parameterized, automatically generated
 * __Education/Training__ : WebR/Quarto live for interactive web interface with programming language, ideal for training.  It can be either a standalone web application 
 or a code chunk in a quarto document. 
 * __Cloud Computing__: Posit Workbench is a cloud computing and it handles infrastrcuture manageement and security requirements. It can be deployed in Posit:Connect.
