@@ -1,0 +1,19 @@
+---
+title: "Past Conference Recordings"
+description: "For those who are interested in past conference recordings"
+author: "Sunny Hospital"
+date: "09/27/20224"
+categories: ["workshops", "openscience", "python", "R"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+## 2024 Conferences and Workshops for Data Science
+
+* SciPy Conference, Tacoma WA [YouTube](https://polarwatch.noaa.gov/erddap/griddap/nsidcG02202v4nh1day.html)
+* Posit:Conf 
+
