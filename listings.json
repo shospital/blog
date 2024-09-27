@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/blog-post/conf_resources.html",
       "/posts/blog-post/jsdocs.html",
       "/posts/blog-post/posit-conf24.html",
       "/posts/blog-post/pycascade24.html",

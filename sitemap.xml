@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shospital.github.io/blog/about.html</loc>
-    <lastmod>2024-09-25T16:27:06.670Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/pycascade24.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/nco_cheatsheet.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/posit-conf24.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/index.html</loc>
-    <lastmod>2024-09-25T16:27:06.670Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/welcome/index.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/index.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/jsdocs.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
+    <lastmod>2024-09-27T17:06:02.337Z</lastmod>
   </url>
   <url>
     <loc>https://shospital.github.io/blog/posts/blog-post/settingup_jh_aws.html</loc>
-    <lastmod>2024-09-25T16:27:06.673Z</lastmod>
+    <lastmod>2024-09-27T17:06:02.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/jsdocs.html</loc>
+    <lastmod>2024-09-27T17:06:02.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/index.html</loc>
+    <lastmod>2024-09-27T17:06:02.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/welcome/index.html</loc>
+    <lastmod>2024-09-27T17:06:02.341Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/index.html</loc>
+    <lastmod>2024-09-27T17:06:02.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/posit-conf24.html</loc>
+    <lastmod>2024-09-27T17:06:02.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/nco_cheatsheet.html</loc>
+    <lastmod>2024-09-27T17:06:02.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/pycascade24.html</loc>
+    <lastmod>2024-09-27T17:06:02.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/conf_resources.html</loc>
+    <lastmod>2024-09-27T17:06:02.338Z</lastmod>
   </url>
 </urlset>
