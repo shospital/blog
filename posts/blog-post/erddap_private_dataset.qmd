@@ -22,7 +22,7 @@ This guideline shows how to automate access to a private dataset on ERDDAP that 
 
 Run the following command to install the necessary libraries:
 
-```{bash}
+``` 
 #| echo: true
 #| execute: false
 
@@ -47,12 +47,7 @@ download_data(session, data_url, outfile): Uses the authenticated session to acc
 ### Code
 Here is the code with comments for each part:
 
-```{python}
-
-#| echo: true
-#| execute: false
-
-# python code 
+```
 
 import requests  # For managing sessions and HTTP requests
 from selenium import webdriver  # For browser control
