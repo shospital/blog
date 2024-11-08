@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2024-09-27">
-<meta name="description" content="For those who are interested in past conference recordings">
+<meta name="dcterms.date" content="2024-11-07">
+<meta name="description" content="Instruction to Access a Private Dataset on ERDDAP Programmatically Using Python with Selenium">
 
-<title>Past Conference Recordings – Blog</title>
+<title>Accessing ERDDAP private datasets programatically – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,17 +111,14 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Past Conference Recordings</h1>
+      <h1 class="title">Accessing ERDDAP private datasets programatically</h1>
                   <div>
         <div class="description">
-          For those who are interested in past conference recordings
+          Instruction to Access a Private Dataset on ERDDAP Programmatically Using Python with Selenium
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">workshops</div>
-                <div class="quarto-category">openscience</div>
                 <div class="quarto-category">python</div>
-                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -139,10 +136,16 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 27, 2024</p>
+        <p class="date">November 7, 2024</p>
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">November 7, 2024</p>
+      </div>
+    </div>
       
     </div>
     
@@ -155,7 +158,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conferences-and-workshops-for-data-science" id="toc-conferences-and-workshops-for-data-science" class="nav-link active" data-scroll-target="#conferences-and-workshops-for-data-science">2024 Conferences and Workshops for Data Science</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#helper-functions" id="toc-helper-functions" class="nav-link" data-scroll-target="#helper-functions">Helper Functions</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#step-by-step-usage" id="toc-step-by-step-usage" class="nav-link" data-scroll-target="#step-by-step-usage">Step-by-Step Usage</a></li>
+  <li><a href="#usage-notes" id="toc-usage-notes" class="nav-link" data-scroll-target="#usage-notes">Usage Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -166,11 +173,153 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="conferences-and-workshops-for-data-science" class="level2">
-<h2 class="anchored" data-anchor-id="conferences-and-workshops-for-data-science">2024 Conferences and Workshops for Data Science</h2>
+<p>This guideline shows how to automate access to a private dataset on ERDDAP that requires Google login using Chrome.</p>
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
+<ol type="1">
+<li>Install Required Python Libraries</li>
+</ol>
+<p>Run the following command to install the necessary libraries:</p>
+<pre><code>#| echo: true
+#| execute: false
+
+pip install requests selenium webdriver_manager
+</code></pre>
+<ol start="2" type="1">
+<li>Setup WebDriver and Helper Functions</li>
+</ol>
+<p>Selenium is a tool that allows automated control of web browsers, such as Chrome, Firefox, and Edge. Here, we use it to navigate to the ERDDAP login page, handle Google login , and retrieve the authentication cookies.</p>
+<p><code>webdriver_manager</code> helps to automatically download and set up the appropriate WebDriver for Chrome.</p>
+</section>
+<section id="helper-functions" class="level3">
+<h3 class="anchored" data-anchor-id="helper-functions">Helper Functions</h3>
+<p>To access the ERDDAP dataset, we define three helper functions:</p>
+<p>get_browser_cookies(login_url): Opens Chrome to log into the ERDDAP server and retrieves the login cookies. authenticate_session(login_url): Uses the cookies from get_browser_cookies to create an authenticated session. download_data(session, data_url, outfile): Uses the authenticated session to access the dataset URL and save it to the specified output file.</p>
+</section>
+<section id="code" class="level3">
+<h3 class="anchored" data-anchor-id="code">Code</h3>
+<p>Here is the code with comments for each part:</p>
+<pre><code>
+import requests  # For managing sessions and HTTP requests
+from selenium import webdriver  # For browser control
+from webdriver_manager.chrome import ChromeDriverManager  # To manage the browser driver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+import time
+
+
+def get_browser_cookies(url):
+    """Retrieve cookies from the browser using Selenium."""
+    
+    # Set Chrome options to suppress automation messages
+    chrome_options = Options()
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")  # Disable automation message
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Hide "Chrome is controlled" message
+    chrome_options.add_experimental_option("useAutomationExtension", False)  # Disable the default automation extension
+
+    # Start the Chrome browser using webdriver-manager
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+
+    try:
+        # Navigate to the login page
+        driver.get(url)
+        
+        # Wait for the user to complete login (adjust time as needed)
+        time.sleep(60)  
+
+        # Retrieve cookies from the browser session
+        cookies = driver.get_cookies()
+        
+        # Verify cookies were retrieved successfully
+        if not cookies:
+            raise ValueError(
+                "No cookies retrieved. Possible causes:\n"
+                "- Insufficient sleep time; try increasing the sleep duration.\n"
+                "- Incompatible or missing WebDriver for Chrome."
+            )
+
+        # Format cookies for session headers
+        formatted_cookies = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
+        print("Cookies Retrieved. Attempting to Access ERDDAP Dataset..")
+        
+    finally:
+        # Close the browser
+        driver.quit()
+    
+    return formatted_cookies
+
+def download_data(session, file_url, output_filename):
+    """Download data file using the authenticated session."""
+    response = session.get(file_url)
+
+    if response.status_code == 200:
+        print("Successfully downloaded data.")
+
+        # Write the file content to disk
+        with open(output_filename, 'wb') as f:
+            f.write(response.content)
+        print(f"Data saved to {output_filename}")
+    else:
+        print(f"Failed to download data. Status code: {response.status_code}")
+        print("Response:", response.text)
+
+def authenticate_session(url):
+    """Authenticate session and return the session object."""
+    session = requests.Session()
+
+    # Get cookies from ERDDAP login page using Selenium
+    try:
+        cookie_header = get_browser_cookies(url)
+    except ValueError as e:
+        print(e)
+        exit(1)
+
+    # Set headers with cookies for authenticated requests
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0',
+        'Cookie': cookie_header
+    })
+    return session
+
+# Main Execution
+if __name__ == "__main__":
+
+    # ERDDAP login URL (through Google login)
+    login_url = "https://polarwatch.noaa.gov/erddap/loginGoogle.html"
+    
+    # ERDDAP data URL (direct link to dataset in .nc format)
+    data_url = [YOUR_ERDDAP_DATASET_URL]
+    
+    # Step 1: Authenticate Session
+    session = authenticate_session(login_url)
+
+    # Step 2: Download the data file and save as YOUR FILENAME
+    download_data(session, data_url, [FILENAME])
+
+</code></pre>
+</section>
+<section id="step-by-step-usage" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-usage">Step-by-Step Usage</h3>
+<ol type="1">
+<li>Install Required Libraries: Make sure requests, selenium, and webdriver_manager are installed.</li>
+<li>Set Login URL and Data URL:
 <ul>
-<li>SciPy Conference, Tacoma WA <a href="https://polarwatch.noaa.gov/erddap/griddap/nsidcG02202v4nh1day.html">YouTube</a></li>
-<li>Posit:Conf</li>
+<li>The login_url is the ERDDAP login page (usually loginGoogle.html for Google login).</li>
+<li>The data_url points to the specific dataset you want to download.</li>
+</ul></li>
+<li>Run the Script:
+<ul>
+<li>Run the script to open Chrome, log in to ERDDAP, retrieve cookies, and download the specified dataset.</li>
+<li>Adjust time.sleep(60) in get_browser_cookies to allow enough time for login if needed.</li>
+</ul></li>
+</ol>
+</section>
+<section id="usage-notes" class="level3">
+<h3 class="anchored" data-anchor-id="usage-notes">Usage Notes</h3>
+<ul>
+<li>Browser and Driver Compatibility: Ensure that ChromeDriver is compatible with your installed Chrome version. webdriver_manager handles this automatically, but Chrome must be installed.</li>
+<li>Alternative Browsers: This guide uses Chrome for simplicity, but Firefox and Edge are also supported with minor adjustments to the code.</li>
+<li>Error Handling: The script checks if cookies were successfully retrieved. If not, it suggests potential issues.</li>
 </ul>
 
 
