@@ -1,0 +1,173 @@
+---
+title: "Accessing ERDDAP private datasets programatically"
+description: "Instruction to Access a Private Dataset on ERDDAP Programmatically Using Python with Selenium"
+author: "Sunny Hospital"
+date: "11/07/2024"
+date-modified: "11/07/2024"
+categories: ["python"]
+image: "cat.jpeg"
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+
+This guideline shows how to automate access to a private dataset on ERDDAP that requires Google login using Chrome.
+
+
+### Prerequisites
+
+1. Install Required Python Libraries
+
+Run the following command to install the necessary libraries:
+
+```{bash}
+#| echo: true
+#| execute: false
+
+pip install requests selenium webdriver_manager
+
+```
+
+2.  Setup WebDriver and Helper Functions
+
+Selenium is a tool that allows automated control of web browsers, such as Chrome, Firefox, and Edge. Here, we use it to navigate to the ERDDAP login page, handle Google login , and retrieve the authentication cookies.
+
+`webdriver_manager` helps to automatically download and set up the appropriate WebDriver for Chrome.
+
+### Helper Functions
+
+To access the ERDDAP dataset, we define three helper functions:
+
+get_browser_cookies(login_url): Opens Chrome to log into the ERDDAP server and retrieves the login cookies.
+authenticate_session(login_url): Uses the cookies from get_browser_cookies to create an authenticated session.
+download_data(session, data_url, outfile): Uses the authenticated session to access the dataset URL and save it to the specified output file.
+
+### Code
+Here is the code with comments for each part:
+
+```{python}
+
+#| echo: true
+#| execute: false
+
+# python code 
+
+import requests  # For managing sessions and HTTP requests
+from selenium import webdriver  # For browser control
+from webdriver_manager.chrome import ChromeDriverManager  # To manage the browser driver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+import time
+
+
+def get_browser_cookies(url):
+    """Retrieve cookies from the browser using Selenium."""
+    
+    # Set Chrome options to suppress automation messages
+    chrome_options = Options()
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")  # Disable automation message
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Hide "Chrome is controlled" message
+    chrome_options.add_experimental_option("useAutomationExtension", False)  # Disable the default automation extension
+
+    # Start the Chrome browser using webdriver-manager
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+
+    try:
+        # Navigate to the login page
+        driver.get(url)
+        
+        # Wait for the user to complete login (adjust time as needed)
+        time.sleep(60)  
+
+        # Retrieve cookies from the browser session
+        cookies = driver.get_cookies()
+        
+        # Verify cookies were retrieved successfully
+        if not cookies:
+            raise ValueError(
+                "No cookies retrieved. Possible causes:\n"
+                "- Insufficient sleep time; try increasing the sleep duration.\n"
+                "- Incompatible or missing WebDriver for Chrome."
+            )
+
+        # Format cookies for session headers
+        formatted_cookies = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
+        print("Cookies Retrieved. Attempting to Access ERDDAP Dataset..")
+        
+    finally:
+        # Close the browser
+        driver.quit()
+    
+    return formatted_cookies
+
+def download_data(session, file_url, output_filename):
+    """Download data file using the authenticated session."""
+    response = session.get(file_url)
+
+    if response.status_code == 200:
+        print("Successfully downloaded data.")
+
+        # Write the file content to disk
+        with open(output_filename, 'wb') as f:
+            f.write(response.content)
+        print(f"Data saved to {output_filename}")
+    else:
+        print(f"Failed to download data. Status code: {response.status_code}")
+        print("Response:", response.text)
+
+def authenticate_session(url):
+    """Authenticate session and return the session object."""
+    session = requests.Session()
+
+    # Get cookies from ERDDAP login page using Selenium
+    try:
+        cookie_header = get_browser_cookies(url)
+    except ValueError as e:
+        print(e)
+        exit(1)
+
+    # Set headers with cookies for authenticated requests
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0',
+        'Cookie': cookie_header
+    })
+    return session
+
+# Main Execution
+if __name__ == "__main__":
+
+    # ERDDAP login URL (through Google login)
+    login_url = "https://polarwatch.noaa.gov/erddap/loginGoogle.html"
+    
+    # ERDDAP data URL (direct link to dataset in .nc format)
+    data_url = [YOUR_ERDDAP_DATASET_URL]
+    
+    # Step 1: Authenticate Session
+    session = authenticate_session(login_url)
+
+    # Step 2: Download the data file and save as YOUR FILENAME
+    download_data(session, data_url, [FILENAME])
+
+
+```
+
+
+### Step-by-Step Usage
+
+1. Install Required Libraries: Make sure requests, selenium, and webdriver_manager are installed.
+2. Set Login URL and Data URL:
+    * The login_url is the ERDDAP login page (usually loginGoogle.html for Google login).
+    * The data_url points to the specific dataset you want to download.
+
+3. Run the Script:
+    * Run the script to open Chrome, log in to ERDDAP, retrieve cookies, and download the specified dataset.
+    * Adjust time.sleep(60) in get_browser_cookies to allow enough time for login if needed.
+
+### Usage Notes
+* Browser and Driver Compatibility: Ensure that ChromeDriver is compatible with your installed Chrome version. 
+webdriver_manager handles this automatically, but Chrome must be installed.
+* Alternative Browsers: This guide uses Chrome for simplicity, but Firefox and Edge are also supported with minor adjustments to the code.
+* Error Handling: The script checks if cookies were successfully retrieved. If not, it suggests potential issues.
+

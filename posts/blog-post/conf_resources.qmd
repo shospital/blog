@@ -2,7 +2,7 @@
 title: "Past Conference Recordings"
 description: "For those who are interested in past conference recordings"
 author: "Sunny Hospital"
-date: "09/27/20224"
+date: "09/27/2024"
 categories: ["workshops", "openscience", "python", "R"]
 image: "cat.jpeg"
 draft: false
