@@ -180,8 +180,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Install Required Python Libraries</li>
 </ol>
 <p>Run the following command to install the necessary libraries:</p>
-<pre><code>#| echo: true
-#| execute: false
+<pre><code>{bash}
 
 pip install requests selenium webdriver_manager
 </code></pre>
@@ -199,7 +198,8 @@ pip install requests selenium webdriver_manager
 <section id="code" class="level3">
 <h3 class="anchored" data-anchor-id="code">Code</h3>
 <p>Here is the code with comments for each part:</p>
-<pre><code>
+<pre><code>{python}
+
 import requests  # For managing sessions and HTTP requests
 from selenium import webdriver  # For browser control
 from webdriver_manager.chrome import ChromeDriverManager  # To manage the browser driver
