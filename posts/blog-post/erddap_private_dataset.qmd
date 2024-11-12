@@ -23,8 +23,7 @@ This guideline shows how to automate access to a private dataset on ERDDAP that 
 Run the following command to install the necessary libraries:
 
 ``` 
-#| echo: true
-#| execute: false
+{bash}
 
 pip install requests selenium webdriver_manager
 
@@ -48,6 +47,7 @@ download_data(session, data_url, outfile): Uses the authenticated session to acc
 Here is the code with comments for each part:
 
 ```
+{python}
 
 import requests  # For managing sessions and HTTP requests
 from selenium import webdriver  # For browser control
