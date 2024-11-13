@@ -13,7 +13,7 @@ html:
 ---
 
 
-This guideline shows how to automate access to a private dataset on ERDDAP that requires Google login using Chrome.
+This guideline shows how to automate access to a private dataset on ERDDAP using Google login and Chrome web browser.
 
 
 ### Prerequisites
@@ -31,17 +31,17 @@ pip install requests selenium webdriver_manager
 
 2.  Setup WebDriver and Helper Functions
 
-Selenium is a tool that allows automated control of web browsers, such as Chrome, Firefox, and Edge. Here, we use it to navigate to the ERDDAP login page, handle Google login , and retrieve the authentication cookies.
+Selenium is a tool that allows automated control of web browsers (Chrome, Firefox, Edge, etc). Here, we use Seleminum to launch the ERDDAP login page, handle Google login, and retrieve the session cookies.
 
-`webdriver_manager` helps to automatically download and set up the appropriate WebDriver for Chrome.
+`webdriver_manager` helps to automatically download and set up the appropriate WebDriver (in this case Chrome).
 
 ### Helper Functions
 
 To access the ERDDAP dataset, we define three helper functions:
 
-get_browser_cookies(login_url): Opens Chrome to log into the ERDDAP server and retrieves the login cookies.
-authenticate_session(login_url): Uses the cookies from get_browser_cookies to create an authenticated session.
-download_data(session, data_url, outfile): Uses the authenticated session to access the dataset URL and save it to the specified output file.
+* `get_browser_cookies(login_url)`: Opens Chrome to log into the ERDDAP server and retrieves the session cookies.
+* `authenticate_session(login_url)`: Uses the cookies from get_browser_cookies to create an authenticated session.
+* `download_data(session, data_url, outfile)`: Uses the authenticated session to access the dataset URL and save it to the specified output file.
 
 ### Code
 Here is the code with comments for each part:
