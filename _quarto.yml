@@ -7,7 +7,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/shospital
+        href: https://github.com/shospital/blog
 format:
   html:
     theme: minty
