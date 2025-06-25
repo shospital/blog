@@ -12,4 +12,20 @@ html:
         code-block-border-left: "#31BAE9"
 ---
 
-## 
+
+###  Mistral LLM
+
+For my Mac Pro M1 Max, I downloaded Q4 model (Q4_K_M) from [Hugging face](https://huggingface.co/mradermacher/Mistral-7B-Instruct-v0.3-GGUF).
+
+
+### llama.cpp
+* Download the binaries for Mac Pro from [https://github.com/ggml-org/llama.cpp/releases](https://github.com/ggml-org/llama.cpp/releases).
+`uname -m` outputs the machine's chip type
+
+* Unzip the binaries
+```
+llama.cpp/build/bin/llama-cli -m Mistral-7B-Instruct-v0.3-GGUF
+```
+
+
+
