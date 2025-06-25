@@ -1,0 +1,15 @@
+---
+title: "Installation of Mistral with llama.cpp"
+description: "Installation of local LLM using opensource model"
+author: "Sunny Hospital"
+date: "06/25/2025"
+categories: ["openscience", "machine learning", "ai"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+## 
