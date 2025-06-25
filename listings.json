@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/blog-post/installing_llm.html",
       "/posts/blog-post/erddap_private_dataset.html",
       "/posts/blog-post/conf_resources.html",
       "/posts/blog-post/jsdocs.html",
