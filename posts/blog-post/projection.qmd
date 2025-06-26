@@ -1,0 +1,99 @@
+---
+title: "Coordinate System"
+description: "Notes on coordinate system (CRS), types of CRS, Geodesy, Spheroid, Datums"
+author: "Sunny Hospital"
+date: "06/26/2025"
+categories: ["GIS"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+## What is Coordinate System?
+
+A **Coordinate Reference System (CRS)** is a framework used to represent the locations of geographic features, imagery, or observations. It enables spatial data to be accurately positioned and interpreted in relation to the Earth.
+
+
+**Each CRS** is defined by the following elements:
+
+1. **Measurement Framework**
+
+    * Geographic: Coordinates measured on a spherical or ellipsoidal surface (latitude and longitude, referenced to the Earth’s center).
+    * Projected: Coordinates projected onto a two-dimensional (planar) surface, typically using a mathematical transformation (map projection).
+
+2. **Unit of Measurement**
+
+    * Geographic CRS: Uses decimal degrees for latitude and longitude.
+    * Projected CRS: Uses linear units such as meters or feet.
+
+3.  **Map Projection Definition (for Projected CRS)**
+
+    * Specifies how the three-dimensional surface of the Earth is translated onto a two-dimensional plane. This includes the mathematical projection method and its parameters.
+
+4. **Other System Properties**
+
+    * Includes the reference ellipsoid (spheroid), geodetic datum, and projection parameters such as standard parallels, central meridian, and false easting/northing (x and y shifts).
+
+## Types of Coordinate System
+
+There are **two common types**:
+
+**Geographic Coordinate Reference System (Geographic CRS)**
+
+A Geographic CRS uses latitude and longitude to specify locations on the Earth's surface, referencing positions on a three-dimensional spherical or ellipsoidal model of the planet. It is defined by:
+
+* An angular unit of measurement: Typically degrees for both latitude and longitude.
+* A prime meridian: The zero-longitude line from which other longitudes are measured (commonly the Greenwich Meridian).
+* A geodetic datum: A mathematical model of the Earth's shape (based on a spheroid or ellipsoid) that provides a frame of reference for the coordinates.
+
+**Projected Coordinate Reference System (Projected CRS)**
+
+A Projected CRS transforms the Earth's curved surface (as defined by a geographic CRS) onto a flat, two-dimensional Cartesian plane using a map projection. Every projected CRS is based on an underlying geographic CRS (including its datum and spheroid). Locations in a projected CRS are identified by:
+
+* X and Y coordinates: These represent positions on a grid, measured in linear units (such as meters or feet).
+* Grid origin: The origin (0,0) of the coordinate system, which may or may not be at the center of the projection area, depending on the specific projection parameters chosen.
+
+
+
+::: {.callout-note title="Cartesian Coordinate Plane"}
+A Cartesian plane assumes:
+
+1. Right-angle (orthogonal) x and y axes
+2. Uniform scale throughout the plane
+3. Locations are measured relative to an origin (0,0)
+:::
+
+## Shape of the Earth (geodesy)
+
+_Concept of Spheroid and Datum_
+
+* **Spheroid** is a shape that approximates the shape of the earth.
+
+* **Datum** is a mathematical model that defines the position of the spheroid relative to the center of the Earth. Datum describes how coordiate system is alligned with the Earth.
+
+* There are two main types of Datum
+    * Geodetic (or geographic) datum : defines origin and orientation of latitude and longitude.
+    * Vertical datum : defines elevation or depth (sea level)
+
+* Datum includes 2 things: __A Spheroid and Reference Point__
+
+* Locations CRS changes depending on which datum and spheroid are used to describe locations.
+
+
+## Three Main Datums
+
+Basically each datum has slightly different shape of the earth ellipsoid and the reference point.
+
+
+| **Datum** | **Spheroid** | **Radius (m)** | **Flattening**         | **Reference Point** | **Notes**                                                         |
+|-----------|------------------------------------|--------------------------|------------------------|-------------------------------|-------------------------------------------------------------------|
+| **WGS84** | WGS84 Ellipsoid                    | 6,378,137.0              | 1/298.257223563        | Earth’s center of mass        |  Standard for GPS                          |
+| **NAD83** | GRS80 Ellipsoid                    | 6,378,137.0              | 1/298.257222101        | Earth’s center of mass        |  Used for US/Canada; similar to WGS84, not identical.              |
+| **NAD27** | Clarke 1866 Ellipsoid              | 6,378,206.4              | 1/294.9786982          | Meades Ranch, Kansas, USA     |  Local reference; older maps.                  |
+
+
+Next blog will describe and compare few main polar projections.
+
