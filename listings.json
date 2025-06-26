@@ -2,9 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/blog-post/projection.html",
       "/posts/blog-post/installing_llm.html",
+      "/posts/blog-post/erddap_features.html",
       "/posts/blog-post/erddap_private_dataset.html",
       "/posts/blog-post/conf_resources.html",
+      "/posts/blog-post/hth_v4.html",
       "/posts/blog-post/jsdocs.html",
       "/posts/blog-post/posit-conf24.html",
       "/posts/blog-post/pycascade24.html",
