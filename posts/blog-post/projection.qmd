@@ -88,7 +88,7 @@ _Concept of Spheroid and Datum_
 Basically each datum has slightly different shape of the earth ellipsoid and the reference point.
 
 
-| **Datum** | **Spheroid** | **Radius (m)** | **Flattening**         | **Reference Point** | **Notes**                                                         |
+| **Datum** | **Spheroid** | **Semi-major axis (m)** | **Flattening**         | **Reference Point** | **Notes**                                                         |
 |-----------|------------------------------------|--------------------------|------------------------|-------------------------------|-------------------------------------------------------------------|
 | **WGS84** | WGS84 Ellipsoid                    | 6,378,137.0              | 1/298.257223563        | Earth’s center of mass        |  Standard for GPS                          |
 | **NAD83** | GRS80 Ellipsoid                    | 6,378,137.0              | 1/298.257222101        | Earth’s center of mass        |  Used for US/Canada; similar to WGS84, not identical.              |
