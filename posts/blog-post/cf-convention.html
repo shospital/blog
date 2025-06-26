@@ -7,10 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2025-06-26">
-<meta name="description" content="Notes on coordinate system (CRS), types of CRS, Geodesy, Spheroid, Datums">
+<meta name="dcterms.date" content="2025-06-25">
 
-<title>Coordinate System – Blog</title>
+<title>CF Convention forTime – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,14 +111,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Coordinate System</h1>
-                  <div>
-        <div class="description">
-          Notes on coordinate system (CRS), types of CRS, Geodesy, Spheroid, Datums
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">GIS</div>
+      <h1 class="title">CF Convention forTime</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">metadata</div>
               </div>
                   </div>
   </div>
@@ -137,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 26, 2025</p>
+        <p class="date">June 25, 2025</p>
       </div>
     </div>
     
@@ -153,10 +147,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-coordinate-system" id="toc-what-is-coordinate-system" class="nav-link active" data-scroll-target="#what-is-coordinate-system">What is Coordinate System?</a></li>
-  <li><a href="#types-of-coordinate-system" id="toc-types-of-coordinate-system" class="nav-link" data-scroll-target="#types-of-coordinate-system">Types of Coordinate System</a></li>
-  <li><a href="#shape-of-the-earth-geodesy" id="toc-shape-of-the-earth-geodesy" class="nav-link" data-scroll-target="#shape-of-the-earth-geodesy">Shape of the Earth (geodesy)</a></li>
-  <li><a href="#three-main-datums" id="toc-three-main-datums" class="nav-link" data-scroll-target="#three-main-datums">Three Main Datums</a></li>
+  <li><a href="#time-variable" id="toc-time-variable" class="nav-link active" data-scroll-target="#time-variable">Time variable</a>
+  <ul class="collapse">
+  <li><a href="#time-units" id="toc-time-units" class="nav-link" data-scroll-target="#time-units">time units</a></li>
+  </ul></li>
+  <li><a href="#time-calendar" id="toc-time-calendar" class="nav-link" data-scroll-target="#time-calendar">Time Calendar</a></li>
   </ul>
 </nav>
     </div>
@@ -167,131 +162,46 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="what-is-coordinate-system" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-coordinate-system">What is Coordinate System?</h2>
-<p>A <strong>Coordinate Reference System (CRS)</strong> is a framework used to represent the locations of geographic features, imagery, or observations. It enables spatial data to be accurately positioned and interpreted in relation to the Earth.</p>
-<p><strong>Each CRS</strong> is defined by the following elements:</p>
-<ol type="1">
-<li><p><strong>Measurement Framework</strong></p>
+<section id="time-variable" class="level2">
+<h2 class="anchored" data-anchor-id="time-variable">Time variable</h2>
 <ul>
-<li>Geographic: Coordinates measured on a spherical or ellipsoidal surface (latitude and longitude, referenced to the Earth’s center).</li>
-<li>Projected: Coordinates projected onto a two-dimensional (planar) surface, typically using a mathematical transformation (map projection).</li>
+<li>must include units (<a href="https://cfconventions.org/cf-conventions/cf-conventions.html#time-coordinate-units">see format</a>)</li>
+<li>has no default value</li>
+<li>time coordinate and the datetime are interconvertible given the calendar</li>
+<li>must comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)
+<ul>
+<li>acceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable</li>
 </ul></li>
-<li><p><strong>Unit of Measurement</strong></p>
-<ul>
-<li>Geographic CRS: Uses decimal degrees for latitude and longitude.</li>
-<li>Projected CRS: Uses linear units such as meters or feet.</li>
-</ul></li>
-<li><p><strong>Map Projection Definition (for Projected CRS)</strong></p>
-<ul>
-<li>Specifies how the three-dimensional surface of the Earth is translated onto a two-dimensional plane. This includes the mathematical projection method and its parameters.</li>
-</ul></li>
-<li><p><strong>Other System Properties</strong></p>
-<ul>
-<li>Includes the reference ellipsoid (spheroid), geodetic datum, and projection parameters such as standard parallels, central meridian, and false easting/northing (x and y shifts).</li>
-</ul></li>
-</ol>
-</section>
-<section id="types-of-coordinate-system" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-coordinate-system">Types of Coordinate System</h2>
-<p>There are <strong>two common types</strong>:</p>
-<p><strong>Geographic Coordinate Reference System (Geographic CRS)</strong></p>
-<p>A Geographic CRS uses latitude and longitude to specify locations on the Earth’s surface, referencing positions on a three-dimensional spherical or ellipsoidal model of the planet. It is defined by:</p>
-<ul>
-<li>An angular unit of measurement: Typically degrees for both latitude and longitude.</li>
-<li>A prime meridian: The zero-longitude line from which other longitudes are measured (commonly the Greenwich Meridian).</li>
-<li>A geodetic datum: A mathematical model of the Earth’s shape (based on a spheroid or ellipsoid) that provides a frame of reference for the coordinates.</li>
+<li>leap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”</li>
 </ul>
-<p><strong>Projected Coordinate Reference System (Projected CRS)</strong></p>
-<p>A Projected CRS transforms the Earth’s curved surface (as defined by a geographic CRS) onto a flat, two-dimensional Cartesian plane using a map projection. Every projected CRS is based on an underlying geographic CRS (including its datum and spheroid). Locations in a projected CRS are identified by:</p>
-<ul>
-<li>X and Y coordinates: These represent positions on a grid, measured in linear units (such as meters or feet).</li>
-<li>Grid origin: The origin (0,0) of the coordinate system, which may or may not be at the center of the projection area, depending on the specific projection parameters chosen.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled" title="Cartesian Coordinate Plane">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Cartesian Coordinate Plane
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A Cartesian plane assumes:</p>
-<ol type="1">
-<li>Right-angle (orthogonal) x and y axes</li>
-<li>Uniform scale throughout the plane</li>
-<li>Locations are measured relative to an origin (0,0)</li>
-</ol>
-</div>
-</div>
+<section id="time-units" class="level3">
+<h3 class="anchored" data-anchor-id="time-units">time units</h3>
+<pre><code>double time(time) ;
+  time:axis = "T"; // optional
+  time:standard_name = "time" ; // optional
+  time:units = "days since 1990-1-1 0:0:0" ; // mandatory</code></pre>
+<p>Example of how adding leap second information</p>
+<pre><code>  float time_stdnone ;
+    time_stdnone:standard_name = "time" ;
+    time_stdnone:long_name = "Model data with no leap seconds" ;
+    time_stdnone:calendar = "standard" ;
+    time_stdnone:units = "seconds since 2016-12-31 23:59:58" ;
+    time_stdnone:units_metadata = "leap_seconds: none" ;
+  float time_stdutc ;
+    time_stdutc:standard_name = "time" ;
+    time_stdutc:long_name = "Model data with leap seconds or obs data with accurate UTC" ;
+    time_stdutc:calendar = "standard" ;
+    time_stdutc:units = "seconds since 2016-12-31 23:59:58" ;
+    time_stdutc:units_metadata = "leap_seconds: utc" ;</code></pre>
 </section>
-<section id="shape-of-the-earth-geodesy" class="level2">
-<h2 class="anchored" data-anchor-id="shape-of-the-earth-geodesy">Shape of the Earth (geodesy)</h2>
-<p><em>Concept of Spheroid and Datum</em></p>
-<ul>
-<li><p><strong>Spheroid</strong> is a shape that approximates the shape of the earth.</p></li>
-<li><p><strong>Datum</strong> is a mathematical model that defines the position of the spheroid relative to the center of the Earth. Datum describes how coordiate system is alligned with the Earth.</p></li>
-<li><p>There are two main types of Datum</p>
-<ul>
-<li>Geodetic (or geographic) datum : defines origin and orientation of latitude and longitude.</li>
-<li>Vertical datum : defines elevation or depth (sea level)</li>
-</ul></li>
-<li><p>Datum includes 2 things: <strong>A Spheroid and Reference Point</strong></p></li>
-<li><p>Locations CRS changes depending on which datum and spheroid are used to describe locations.</p></li>
-</ul>
 </section>
-<section id="three-main-datums" class="level2">
-<h2 class="anchored" data-anchor-id="three-main-datums">Three Main Datums</h2>
-<p>Basically each datum has slightly different shape of the earth ellipsoid and the reference point.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 18%">
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 15%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Datum</strong></th>
-<th><strong>Spheroid</strong></th>
-<th><strong>Semi-major axis (m)</strong></th>
-<th><strong>Flattening</strong></th>
-<th><strong>Reference Point</strong></th>
-<th><strong>Notes</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>WGS84</strong></td>
-<td>WGS84 Ellipsoid</td>
-<td>6,378,137.0</td>
-<td>1/298.257223563</td>
-<td>Earth’s center of mass</td>
-<td>Standard for GPS</td>
-</tr>
-<tr class="even">
-<td><strong>NAD83</strong></td>
-<td>GRS80 Ellipsoid</td>
-<td>6,378,137.0</td>
-<td>1/298.257222101</td>
-<td>Earth’s center of mass</td>
-<td>Used for US/Canada; similar to WGS84, not identical.</td>
-</tr>
-<tr class="odd">
-<td><strong>NAD27</strong></td>
-<td>Clarke 1866 Ellipsoid</td>
-<td>6,378,206.4</td>
-<td>1/294.9786982</td>
-<td>Meades Ranch, Kansas, USA</td>
-<td>Local reference; older maps.</td>
-</tr>
-</tbody>
-</table>
-<p>Next blog will describe and compare few main polar projections.</p>
+<section id="time-calendar" class="level2">
+<h2 class="anchored" data-anchor-id="time-calendar">Time Calendar</h2>
+<ul>
+<li>CF calendar refers to datetime, not just date.</li>
+<li>calendar standard: default UDUNITS. A <strong>deprecated</strong> alternative name is gregorian.</li>
+<li>other calendar categories are proleptic_gregorian, julian, and utc. Read more at <a href="https://cfconventions.org/cf-conventions/cf-conventions.html#leap-seconds">cf-convention</a></li>
+</ul>
 
 
 </section>

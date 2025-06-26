@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/blog-post/projection.html",
+      "/posts/blog-post/cf-convention.html",
       "/posts/blog-post/installing_llm.html",
       "/posts/blog-post/erddap_features.html",
       "/posts/blog-post/erddap_private_dataset.html",
