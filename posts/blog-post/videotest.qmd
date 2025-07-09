@@ -5,7 +5,7 @@ author: "Sunny Hospital"
 date: "7/09/2025"
 categories: ["github"]
 image: "cat.jpeg"
-draft: true
+draft: false
 html:
     format:
         code-block-bg: true

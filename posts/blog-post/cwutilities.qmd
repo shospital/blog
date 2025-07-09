@@ -1,22 +1,20 @@
 ---
-title: "How to embed video in github page"
-description: ""
+title: "Utilitizing CoastWatch Utilities for CF conventions"
+description: "How to make NetCDF work with CW Utilities"
 author: "Sunny Hospital"
 date: "7/09/2025"
-categories: ["github"]
 image: "cat.jpeg"
-draft: false
+draft: true
 html:
     format:
         code-block-bg: true
         code-block-border-left: "#31BAE9"
 ---
 
-## Here's video!
+## If you can't open the netCDF file in CW Utilities..
 
-<video width="500" height="400" controls preload>
-    <source src="output_global_chlora_2020_2024.mp4" />
+Most likely, the file doesn't include one or more of CF convention standards.
+Let's go over some of the components.
 
-    
-</video>
+* Time
 
