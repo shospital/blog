@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/blog-post/videotest.html",
       "/posts/blog-post/projection.html",
       "/posts/blog-post/cf-convention.html",
-      "/posts/blog-post/installing_llm.html",
       "/posts/blog-post/erddap_features.html",
       "/posts/blog-post/erddap_private_dataset.html",
       "/posts/blog-post/conf_resources.html",
@@ -14,8 +14,10 @@
       "/posts/blog-post/pycascade24.html",
       "/posts/blog-post/settingup_jh_aws.html",
       "/posts/blog-post/nco_cheatsheet.html",
+      "/posts/blog-post/stac_aws.html",
       "/posts/blog-post/index.html",
-      "/posts/welcome/index.html"
+      "/posts/welcome/index.html",
+      "/posts/blog-post/iterables.html"
     ]
   }
 ]
