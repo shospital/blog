@@ -105,18 +105,25 @@
     "text": "I find javascript files difficult to read and follow especially when they were written by someone else and your job is to modify or fix what isn’t working. Often the script contains thousands of lines and it’s unclear which objects the javascript actions are applied to.\nThere are some good comments in the scripts but not in a consistent format recommended by standards. In this situation, I find it easy to first generate web-based documents using JSDoc and start from there.\nSince I don’t the admin access, I downloaded and installed locally\nnpm install jsdoc\njsdocs myjavascript.js\nThis created a webpage reference to all functions with any comments or annotations."
   },
   {
-    "objectID": "posts/blog-post/conf_resources.html",
-    "href": "posts/blog-post/conf_resources.html",
-    "title": "Past Conference Recordings",
+    "objectID": "posts/blog-post/cf-convention.html",
+    "href": "posts/blog-post/cf-convention.html",
+    "title": "CF Convention forTime",
     "section": "",
-    "text": "SciPy Conference, Tacoma WA YouTube\nPosit:Conf"
+    "text": "must include units (see format)\nhas no default value\ntime coordinate and the datetime are interconvertible given the calendar\nmust comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)\n\nacceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable\n\nleap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”\n\n\n\ndouble time(time) ;\n  time:axis = \"T\"; // optional\n  time:standard_name = \"time\" ; // optional\n  time:units = \"days since 1990-1-1 0:0:0\" ; // mandatory\nExample of how adding leap second information\n  float time_stdnone ;\n    time_stdnone:standard_name = \"time\" ;\n    time_stdnone:long_name = \"Model data with no leap seconds\" ;\n    time_stdnone:calendar = \"standard\" ;\n    time_stdnone:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdnone:units_metadata = \"leap_seconds: none\" ;\n  float time_stdutc ;\n    time_stdutc:standard_name = \"time\" ;\n    time_stdutc:long_name = \"Model data with leap seconds or obs data with accurate UTC\" ;\n    time_stdutc:calendar = \"standard\" ;\n    time_stdutc:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdutc:units_metadata = \"leap_seconds: utc\" ;"
   },
   {
-    "objectID": "posts/blog-post/conf_resources.html#conferences-and-workshops-for-data-science",
-    "href": "posts/blog-post/conf_resources.html#conferences-and-workshops-for-data-science",
-    "title": "Past Conference Recordings",
+    "objectID": "posts/blog-post/cf-convention.html#time-variable",
+    "href": "posts/blog-post/cf-convention.html#time-variable",
+    "title": "CF Convention forTime",
     "section": "",
-    "text": "SciPy Conference, Tacoma WA YouTube\nPosit:Conf"
+    "text": "must include units (see format)\nhas no default value\ntime coordinate and the datetime are interconvertible given the calendar\nmust comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)\n\nacceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable\n\nleap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”\n\n\n\ndouble time(time) ;\n  time:axis = \"T\"; // optional\n  time:standard_name = \"time\" ; // optional\n  time:units = \"days since 1990-1-1 0:0:0\" ; // mandatory\nExample of how adding leap second information\n  float time_stdnone ;\n    time_stdnone:standard_name = \"time\" ;\n    time_stdnone:long_name = \"Model data with no leap seconds\" ;\n    time_stdnone:calendar = \"standard\" ;\n    time_stdnone:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdnone:units_metadata = \"leap_seconds: none\" ;\n  float time_stdutc ;\n    time_stdutc:standard_name = \"time\" ;\n    time_stdutc:long_name = \"Model data with leap seconds or obs data with accurate UTC\" ;\n    time_stdutc:calendar = \"standard\" ;\n    time_stdutc:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdutc:units_metadata = \"leap_seconds: utc\" ;"
+  },
+  {
+    "objectID": "posts/blog-post/cf-convention.html#time-calendar",
+    "href": "posts/blog-post/cf-convention.html#time-calendar",
+    "title": "CF Convention forTime",
+    "section": "Time Calendar",
+    "text": "Time Calendar\n\nCF calendar refers to datetime, not just date.\ncalendar standard: default UDUNITS. A deprecated alternative name is gregorian.\nother calendar categories are proleptic_gregorian, julian, and utc. Read more at cf-convention"
   },
   {
     "objectID": "posts/blog-post/projection.html",
@@ -154,25 +161,18 @@
     "text": "Three Main Datums\nBasically each datum has slightly different shape of the earth ellipsoid and the reference point.\n\n\n\n\n\n\n\n\n\n\n\nDatum\nSpheroid\nSemi-major axis (m)\nFlattening\nReference Point\nNotes\n\n\n\n\nWGS84\nWGS84 Ellipsoid\n6,378,137.0\n1/298.257223563\nEarth’s center of mass\nStandard for GPS\n\n\nNAD83\nGRS80 Ellipsoid\n6,378,137.0\n1/298.257222101\nEarth’s center of mass\nUsed for US/Canada; similar to WGS84, not identical.\n\n\nNAD27\nClarke 1866 Ellipsoid\n6,378,206.4\n1/294.9786982\nMeades Ranch, Kansas, USA\nLocal reference; older maps.\n\n\n\nNext blog will describe and compare few main polar projections."
   },
   {
-    "objectID": "posts/blog-post/cf-convention.html",
-    "href": "posts/blog-post/cf-convention.html",
-    "title": "CF Convention forTime",
+    "objectID": "posts/blog-post/conf_resources.html",
+    "href": "posts/blog-post/conf_resources.html",
+    "title": "Past Conference Recordings",
     "section": "",
-    "text": "must include units (see format)\nhas no default value\ntime coordinate and the datetime are interconvertible given the calendar\nmust comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)\n\nacceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable\n\nleap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”\n\n\n\ndouble time(time) ;\n  time:axis = \"T\"; // optional\n  time:standard_name = \"time\" ; // optional\n  time:units = \"days since 1990-1-1 0:0:0\" ; // mandatory\nExample of how adding leap second information\n  float time_stdnone ;\n    time_stdnone:standard_name = \"time\" ;\n    time_stdnone:long_name = \"Model data with no leap seconds\" ;\n    time_stdnone:calendar = \"standard\" ;\n    time_stdnone:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdnone:units_metadata = \"leap_seconds: none\" ;\n  float time_stdutc ;\n    time_stdutc:standard_name = \"time\" ;\n    time_stdutc:long_name = \"Model data with leap seconds or obs data with accurate UTC\" ;\n    time_stdutc:calendar = \"standard\" ;\n    time_stdutc:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdutc:units_metadata = \"leap_seconds: utc\" ;"
+    "text": "SciPy Conference, Tacoma WA YouTube\nPosit:Conf"
   },
   {
-    "objectID": "posts/blog-post/cf-convention.html#time-variable",
-    "href": "posts/blog-post/cf-convention.html#time-variable",
-    "title": "CF Convention forTime",
+    "objectID": "posts/blog-post/conf_resources.html#conferences-and-workshops-for-data-science",
+    "href": "posts/blog-post/conf_resources.html#conferences-and-workshops-for-data-science",
+    "title": "Past Conference Recordings",
     "section": "",
-    "text": "must include units (see format)\nhas no default value\ntime coordinate and the datetime are interconvertible given the calendar\nmust comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)\n\nacceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable\n\nleap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”\n\n\n\ndouble time(time) ;\n  time:axis = \"T\"; // optional\n  time:standard_name = \"time\" ; // optional\n  time:units = \"days since 1990-1-1 0:0:0\" ; // mandatory\nExample of how adding leap second information\n  float time_stdnone ;\n    time_stdnone:standard_name = \"time\" ;\n    time_stdnone:long_name = \"Model data with no leap seconds\" ;\n    time_stdnone:calendar = \"standard\" ;\n    time_stdnone:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdnone:units_metadata = \"leap_seconds: none\" ;\n  float time_stdutc ;\n    time_stdutc:standard_name = \"time\" ;\n    time_stdutc:long_name = \"Model data with leap seconds or obs data with accurate UTC\" ;\n    time_stdutc:calendar = \"standard\" ;\n    time_stdutc:units = \"seconds since 2016-12-31 23:59:58\" ;\n    time_stdutc:units_metadata = \"leap_seconds: utc\" ;"
-  },
-  {
-    "objectID": "posts/blog-post/cf-convention.html#time-calendar",
-    "href": "posts/blog-post/cf-convention.html#time-calendar",
-    "title": "CF Convention forTime",
-    "section": "Time Calendar",
-    "text": "Time Calendar\n\nCF calendar refers to datetime, not just date.\ncalendar standard: default UDUNITS. A deprecated alternative name is gregorian.\nother calendar categories are proleptic_gregorian, julian, and utc. Read more at cf-convention"
+    "text": "SciPy Conference, Tacoma WA YouTube\nPosit:Conf"
   },
   {
     "objectID": "posts/blog-post/posit-conf24.html",
