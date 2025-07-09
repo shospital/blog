@@ -21,7 +21,7 @@ html:
     <source src="output_global_chlora_2020_2024.mp4" />
 ```
  
-<video width="500" height="400" controls preload>
+<video width="500" height="400" controls >
     <source src="output_global_chlora_2020_2024.mp4" />
    
 </video>
