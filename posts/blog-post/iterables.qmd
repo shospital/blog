@@ -1,12 +1,12 @@
 ---
 title: "Python Iterators, Iterables, Asynchronous"
-description: "something new I learn about git"
+description: ""
 author: "Sunny Hospital"
 date: "5/22/2021"
 date-modified: "5/23/2021"
 categories: ["python"]
 image: "cat.jpeg"
-draft: true
+draft: false
 html:
     format:
         code-block-bg: true

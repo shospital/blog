@@ -5,7 +5,7 @@ author: "Sunny Hospital"
 date: "06/25/2025"
 categories: ["openscience", "machine learning", "ai"]
 image: "cat.jpeg"
-draft: false
+draft: true 
 html:
     format:
         code-block-bg: true

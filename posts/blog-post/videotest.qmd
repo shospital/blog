@@ -1,0 +1,22 @@
+---
+title: "How to embed video in github page"
+description: ""
+author: "Sunny Hospital"
+date: "7/09/2025"
+categories: ["github"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+## Here's video!
+
+<video width="500" height="400" controls preload>
+    <source src="output_global_chlora_2020_2024.mp4" />
+
+    
+</video>
+

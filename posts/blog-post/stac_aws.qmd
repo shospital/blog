@@ -1,0 +1,27 @@
+---
+title: "Setting up STAC on AWS"
+description: "Setting up STAC using stac-fastapi"
+author: "Sunny Hospital"
+date: "2024-04-02"
+categories: ["netcdf", "nco"]
+image: "cat.jpeg"
+
+---
+=
+
+
+### Resources
+
+* [stac-fastapi](https://stac-utils.github.io/stac-fastapi/)
+* EC2, ECS, or Lambda to run the API server.
+* RDS PostgreSQL (with PostGIS) as the backend.
+* S3 for storing the actual data files and/or static STAC JSONs (optional but common).
+* Lambda or Batch job to ingest new data and register it in the STAC API.
+
+
+``` 
+
+
+```
+
+
