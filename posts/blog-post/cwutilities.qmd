@@ -16,5 +16,8 @@ html:
 Most likely, the file doesn't include one or more of CF convention standards.
 Let's go over some of the components.
 
-* Time
+* Time 
+* Coordinate (x)
+* Coordiante (y)
+* 
 

@@ -1,14 +1,91 @@
 ---
-title: "Setting up STAC on AWS"
+title: "Setting up stac-fastapi"
 description: "Setting up STAC using stac-fastapi"
 author: "Sunny Hospital"
-date: "2024-04-02"
+date: "2025-07-24"
 categories: ["netcdf", "nco"]
 image: "cat.jpeg"
+draft: true 
 
 ---
 =
 
+# Setting up stac-fastapi with postgresql locally
+
+
+* download [stac-fastapi](https://stac-utils.github.io/stac-fastapi/)
+* download [stac-fastapi-pgstac](https://github.com/stac-utils/stac-fastapi-pgstac/tree/main)
+
+* Create .env file with env variables
+
+```
+# create .env
+PGUSER=[username]
+PGPASSWORD=[password]
+PGHOST=localhost
+PGPORT=5432
+PGDATABASE=[database name]
+PORTS=8083:80
+EOF
+```
+* Run docker 
+```
+docker compose up --build
+```
+
+## Test 
+
+#### Ping the server
+
+```
+curl http://localhost:8080/_mgmt/ping
+```
+
+#### Create (POST) data collection
+
+```
+# Create (POST) data collection and get a 201 response and a JSON payload containing your collection info.
+curl -X POST http://localhost:8082/collections \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": "testcol",
+    "description": "data collection",
+    "extent": {
+      "spatial": { "bbox": [[-180,-90,180,90]] },
+      "temporal": { "interval": [["2020-01-01T00:00:00Z", null]] }
+    },
+    "license": "CC0"
+  }'
+```
+
+#### Get (GET) data
+```
+curl -X GET http://localhost:8082/collections/testcol
+```
+
+Search (GET) data
+```
+curl -X GET "http://localhost:8080/search"
+```
+
+| Action (payload)              | Command/Result                                      |
+|--------------------------------------|-----------------------------------|
+| Checking Containers running with stac-fastapi and pgstac  | `docker ps` |
+| Ping Server, returning json response      | `curl /_mgmt/ping`              |
+| Create endpoint (201 response)   | `POST /collections`            |
+| Get endpoint (json response)     | `GET /collections/testcol` |
+| Search (list) endpoint (json response)    | `GET /search`<br>             |
+
+#### Cheatsheet
+```
+# check docker currently running
+docker-compose ps
+
+# check the log
+docker-compose logs stac_fastapi
+
+docker ps --format '{{.ID}}\t{{.Names}}\t{{.Command}}'
+```
 
 ### Resources
 
@@ -17,6 +94,7 @@ image: "cat.jpeg"
 * RDS PostgreSQL (with PostGIS) as the backend.
 * S3 for storing the actual data files and/or static STAC JSONs (optional but common).
 * Lambda or Batch job to ingest new data and register it in the STAC API.
+
 
 
 ``` 

@@ -1,0 +1,42 @@
+---
+title: "PyCon24 Notes "
+description: " "
+author: "Sunny Hospital"
+date: "7/28/2025"
+date-modified: "5/23/2021"
+categories: ["python", "conference"]
+image: "cat.jpeg"
+draft: true
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+PyCon Estonia 2024: Three Level Programming by Raymond Hettinger
+Source: https://www.youtube.com/watch?v=V__qQGdupxM
+
+* LLM provides codes but they take in good and bad codes 
+and it will be our jobs to evaluate.
+* You need to get a level of programming and ways are from "enjoying programming", or talk to people who enjoy, or go to conferences.
+* LLM go to stack overflow. 
+* Winning marraige. what's the performance implication and on demand, acquire the knowledge as you go.
+
+## High Level - The program domain
+-  if you get into programming and thinking about programming ways and write it. skills but it's not the best. 
+
+__force the problem into the machine__.  thinking into the program is not what LLM is good at.  Approach the problem from the top down. Solutions from the problem domain.
+
+## Examples
+### Recongnize bad code 
+
+If if you look under the hood, it may be using forloop and mistakenly you are calling for loop inside for loop in various methods/functions.  __Ask LLM__
+
+### Causal Inference
+
+Confounding association (wine drinking is healthy, not.)
+__Design code like causal inference.__
+
+### Take away
+What is this function made up of, 
+

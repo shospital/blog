@@ -10,7 +10,7 @@ website:
         href: https://github.com/shospital/blog
 format:
   html:
-    theme: minty
+    theme: yeti 
     css: styles.css
     toc: true
     code-link: true
