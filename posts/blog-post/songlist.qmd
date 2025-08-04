@@ -2,7 +2,7 @@
 title: "엄마의 팝송 리스트"
 description: "홧팅! "
 image: "cat.jpeg"
-draft: false 
+draft: true 
 ---
 
 * <a href="songlist/summer25.html">2025년 여름학기</a>
