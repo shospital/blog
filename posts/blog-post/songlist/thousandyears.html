@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2024-04-03">
-<meta name="description" content="How to set up JupyterHub on AWS (Amazon web services)">
 
-<title>Set up JupyterHub on AWS – Blog</title>
+<title>thousandyears – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1c3ccb92a5858e74589ae78c7340beb0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-1c3ccb92a5858e74589ae78c7340beb0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -82,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Blog</span>
     </a>
   </div>
@@ -93,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">Sunny Hospital</span></a>
   </li>  
   <li class="nav-item compact">
@@ -109,44 +106,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Set up JupyterHub on AWS</h1>
-                  <div>
-        <div class="description">
-          How to set up JupyterHub on AWS (Amazon web services)
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">openscience</div>
-                <div class="quarto-category">cloud</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Sunny Hospital </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">April 3, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -154,36 +114,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#set-up-jupyterhub-on-aws" id="toc-set-up-jupyterhub-on-aws" class="nav-link active" data-scroll-target="#set-up-jupyterhub-on-aws">Set up JupyterHub on AWS</a>
-  <ul class="collapse">
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a>
-  <ul class="collapse">
-  <li><a href="#project-requirements" id="toc-project-requirements" class="nav-link" data-scroll-target="#project-requirements">Project Requirements</a></li>
-  <li><a href="#aws-service-requirements" id="toc-aws-service-requirements" class="nav-link" data-scroll-target="#aws-service-requirements">AWS Service Requirements</a></li>
-  </ul></li>
-  <li><a href="#set-up-aws-architecture" id="toc-set-up-aws-architecture" class="nav-link" data-scroll-target="#set-up-aws-architecture">Set Up AWS Architecture</a>
-  <ul class="collapse">
-  <li><a href="#create-vpc-using-the-template-config-file" id="toc-create-vpc-using-the-template-config-file" class="nav-link" data-scroll-target="#create-vpc-using-the-template-config-file">Create VPC using the template config file</a></li>
-  <li><a href="#install-kubectrl" id="toc-install-kubectrl" class="nav-link" data-scroll-target="#install-kubectrl">Install <code>kubectrl</code></a></li>
-  <li><a href="#install-helm" id="toc-install-helm" class="nav-link" data-scroll-target="#install-helm">Install <code>helm</code></a></li>
-  <li><a href="#create-iam-role-and-user-iam" id="toc-create-iam-role-and-user-iam" class="nav-link" data-scroll-target="#create-iam-role-and-user-iam">Create IAM Role and User (IAM)</a></li>
-  <li><a href="#create-cluster-eks" id="toc-create-cluster-eks" class="nav-link" data-scroll-target="#create-cluster-eks">Create Cluster (EKS)</a></li>
-  <li><a href="#create-cluster-node-group" id="toc-create-cluster-node-group" class="nav-link" data-scroll-target="#create-cluster-node-group">Create Cluster node group</a></li>
-  <li><a href="#configure-iam-for-cluster-access" id="toc-configure-iam-for-cluster-access" class="nav-link" data-scroll-target="#configure-iam-for-cluster-access">Configure IAM for cluster access</a></li>
-  <li><a href="#create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage" id="toc-create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage" class="nav-link" data-scroll-target="#create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage">Create Web identity role for cluster to access EBS (Elastic Block Storage)</a></li>
-  <li><a href="#create-node-group-on-your-cluster" id="toc-create-node-group-on-your-cluster" class="nav-link" data-scroll-target="#create-node-group-on-your-cluster">Create node group on your cluster</a></li>
-  <li><a href="#create-efs-file-system" id="toc-create-efs-file-system" class="nav-link" data-scroll-target="#create-efs-file-system">Create EFS file system</a></li>
-  <li><a href="#add-ebs-addon-to-our-cluster" id="toc-add-ebs-addon-to-our-cluster" class="nav-link" data-scroll-target="#add-ebs-addon-to-our-cluster">Add EBS Addon to our Cluster</a></li>
-  <li><a href="#access-cluster" id="toc-access-cluster" class="nav-link" data-scroll-target="#access-cluster">Access cluster</a></li>
-  <li><a href="#upgrade-helm-and-install-docker" id="toc-upgrade-helm-and-install-docker" class="nav-link" data-scroll-target="#upgrade-helm-and-install-docker">Upgrade helm and install docker</a></li>
-  <li><a href="#connect-to-jupyterhub" id="toc-connect-to-jupyterhub" class="nav-link" data-scroll-target="#connect-to-jupyterhub">Connect to JupyterHub</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#terminal-jupyterhub-setup" id="toc-terminal-jupyterhub-setup" class="nav-link" data-scroll-target="#terminal-jupyterhub-setup">Terminal JupyterHub Setup</a>
-  <ul class="collapse">
-  <li><a href="#delete-eks-cluster" id="toc-delete-eks-cluster" class="nav-link" data-scroll-target="#delete-eks-cluster">Delete EKS Cluster</a></li>
-  <li><a href="#delete-efs" id="toc-delete-efs" class="nav-link" data-scroll-target="#delete-efs">Delete EFS</a></li>
-  </ul></li>
+  <li><a href="#thousand-years" id="toc-thousand-years" class="nav-link active" data-scroll-target="#thousand-years">Thousand Years</a></li>
   </ul>
 </nav>
     </div>
@@ -193,260 +124,46 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-
-<section id="set-up-jupyterhub-on-aws" class="level1">
-<h1>Set up JupyterHub on AWS</h1>
-<p>The set up instruction is based on the <a href="https://saturncloud.io/blog/jupyterhub_aws/">https://saturncloud.io/blog/jupyterhub_aws/</a></p>
-<section id="requirements" class="level2">
-<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
-<section id="project-requirements" class="level3">
-<h3 class="anchored" data-anchor-id="project-requirements">Project Requirements</h3>
-<ul>
-<li>Scalable JupyterHub with RStudio and Python</li>
-<li>Pre-installation of packages</li>
-<li>Compute power sufficient for CoastWatch R and Python tutorials</li>
-</ul>
-</section>
-<section id="aws-service-requirements" class="level3">
-<h3 class="anchored" data-anchor-id="aws-service-requirements">AWS Service Requirements</h3>
-<ul>
-<li><p>VPC (Virtual Private Cloud) - creating a private network<br>
-</p></li>
-<li><p>Cloud Formation - creating and starting aws services using a pre-specified template</p></li>
-<li><p>Cloud9 - accessing aws services via command line (or download and use <a href="https://aws.amazon.com/cli/"><code>aws cli</code></a>)</p></li>
-<li><p>IAM Role - creating roles/users and associated policies</p></li>
-<li><p>EKS (Elastic Kubernetes Service) - creating EKS cluster and manage kubernetes control plane</p></li>
-<li><p>EBS (Elastic Block Storage) - creating storage for software/data installed on the cluster</p></li>
-</ul>
-</section>
-</section>
-<section id="set-up-aws-architecture" class="level2">
-<h2 class="anchored" data-anchor-id="set-up-aws-architecture">Set Up AWS Architecture</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="AWS Account">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-AWS Account
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The process of creating AWS account is omitted in this document.</p>
-</div>
-</div>
-<section id="create-vpc-using-the-template-config-file" class="level3">
-<h3 class="anchored" data-anchor-id="create-vpc-using-the-template-config-file">Create VPC using the template config file</h3>
-<ul>
-<li>Download VPC template from the satern cloud website, or <a href="https://drive.google.com/open?id=1MAE0eeXICRHiGe3TsoJmboGbq5JHC7fN&amp;usp=drive_copy">amazon-eks-vpc-private-subnets.yaml</a></li>
-<li>Go to AWS Cloud Formation Console and create VPC using the downloaded template</li>
-</ul>
-</section>
-<section id="install-kubectrl" class="level3">
-<h3 class="anchored" data-anchor-id="install-kubectrl">Install <code>kubectrl</code></h3>
-<ul>
-<li>Either in Cloud9 or your local terminal</li>
-</ul>
-<pre><code>curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl</code></pre>
-</section>
-<section id="install-helm" class="level3">
-<h3 class="anchored" data-anchor-id="install-helm">Install <code>helm</code></h3>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Jupyterhub didn’t work with lower version of <code>helm</code>.</p>
-</div>
-</div>
-<pre><code>curl https://raw.githubusercontent.com/helm/helm/HEAD/scripts/get-helm-3 | bash
-helm version
-
-helm upgrade --cleanup-on-fail \
---install YOUR_RELEASE jupyterhub/jupyterhub \
---namespace YOUR_NS \
---create-namespace --version='3.2.0' 
---values config.yaml \</code></pre>
-</section>
-<section id="create-iam-role-and-user-iam" class="level3">
-<h3 class="anchored" data-anchor-id="create-iam-role-and-user-iam">Create IAM Role and User (IAM)</h3>
-<ul>
-<li>Go to IAM (Identity Access Management) Console</li>
-<li>Create IAM Role
-<ul>
-<li>Select Usercase: <strong>eksCluster</strong>, Name: my-eks-role</li>
-<li>For policies:
-<ul>
-<li>Usercase: <strong>EC2</strong> and attach the following:
-<ul>
-<li><strong>AmazonEKSWorkerNodePolicy</strong></li>
-<li><strong>AmazonEC2ContainerRegistryReadOnly</strong></li>
-<li><strong>AmazonEKS_CNI_Policy</strong></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li>Create IAM User
-<ul>
-<li>Select <strong>Attach policies directly</strong></li>
-<li>Username : my-user; Select <strong>AdminAccess</strong></li>
-<li>Download Access key to your desktop</li>
-</ul></li>
-</ul>
-</section>
-<section id="create-cluster-eks" class="level3">
-<h3 class="anchored" data-anchor-id="create-cluster-eks">Create Cluster (EKS)</h3>
-<ul>
-<li>Go to Cluster (EKS) Console and Create EKS cluster
-<ul>
-<li><p>use default values for data entry</p></li>
-<li><p>Cluster servic role - eks role created</p></li>
-<li><p>Cluster authentication mode: select EKS API and ConfigMap</p></li>
-<li><p>Select Your VPC and Public and private endpoint</p></li>
-<li><p>Leave security group empty</p></li>
-<li><p>Endpoint access - public and private</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="create-cluster-node-group" class="level3">
-<h3 class="anchored" data-anchor-id="create-cluster-node-group">Create Cluster node group</h3>
-<ul>
-<li>Select “Compute” from the cluster page</li>
-<li>Select add node role created<br>
-</li>
-<li>Node IAM role: node group<br>
-</li>
-<li>select instance type for a node
-<ul>
-<li>AMI type: amazone linux</li>
-<li>on-demand</li>
-<li>t3.medium</li>
-<li>disk size: 20GiB</li>
-<li>node size (desired, min and max)</li>
-</ul></li>
-</ul>
-</section>
-<section id="configure-iam-for-cluster-access" class="level3">
-<h3 class="anchored" data-anchor-id="configure-iam-for-cluster-access">Configure IAM for cluster access</h3>
-<p>This step is to set up IAM role and user for cluster access</p>
-<ul>
-<li>From the cluster created, copy <strong>OpenID Connect provider URL</strong> from Cluster</li>
-<li>Go to <strong>IAM</strong> Console</li>
-<li>Select Identity Providers under IAM and OpenID Connect and copy the URL
-<ul>
-<li>Audience: sts.amazonaws.com</li>
-<li>Storage Configuration, Access -&gt; Configure IAM access entry -&gt; Select my-user (whatever you set up as iam user)</li>
-<li>IAM principal ARN</li>
-<li>Audience: sts.amazonaws.com</li>
-</ul></li>
-</ul>
-</section>
-<section id="create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage" class="level3">
-<h3 class="anchored" data-anchor-id="create-web-identity-role-for-cluster-to-access-ebs-elastic-block-storage">Create Web identity role for cluster to access EBS (Elastic Block Storage)</h3>
-<ul>
-<li>Go to the IAM Console</li>
-<li>Create IAM role (ebs-role)</li>
-<li>Select Web Identity</li>
-<li>Select aws add and <strong>sts.amazonaws</strong></li>
-<li>Select <strong>AmazonEBSCSIDriverPolicy</strong>, <strong>Amazon EBS CSI Driver operator</strong></li>
-<li>Go to Add-On and add <strong>AmazonEBS</strong>
-<ul>
-<li><strong>Access</strong> : select my-user, <strong>Policy</strong>: <strong>EKSClusterAdmin</strong></li>
-</ul></li>
-</ul>
-</section>
-<section id="create-node-group-on-your-cluster" class="level3">
-<h3 class="anchored" data-anchor-id="create-node-group-on-your-cluster">Create node group on your cluster</h3>
-<ul>
-<li>Go to EKS Cluster Console</li>
-<li>Make all values node=1 and max to =2 (up to your requirement)</li>
-<li>Select <strong>EC2Role</strong></li>
-</ul>
-</section>
-<section id="create-efs-file-system" class="level3">
-<h3 class="anchored" data-anchor-id="create-efs-file-system">Create EFS file system</h3>
-<ul>
-<li>Go to EFS Console</li>
-<li>Select your VPC</li>
-<li>Create</li>
-</ul>
-</section>
-<section id="add-ebs-addon-to-our-cluster" class="level3">
-<h3 class="anchored" data-anchor-id="add-ebs-addon-to-our-cluster">Add EBS Addon to our Cluster</h3>
-<ul>
-<li>Click on Addon on your Cluster</li>
-<li>Click on more Addon and select Amazon EBS CSI Driver Info</li>
-<li>Select ebs-role</li>
-</ul>
-</section>
-<section id="access-cluster" class="level3">
-<h3 class="anchored" data-anchor-id="access-cluster">Access cluster</h3>
-<ul>
-<li>In your terminal or Cloud9, add ACCESS information downloaded earlier.</li>
-</ul>
-<pre><code>export AWS_ACCESS_KEY_ID=[ADD YOURS]
-export AWS_SECRET_ACCESS_KEY=[ADD YOURS]
-export AWS_DEFAULT_REGION=[YOUR REGION]
-
-aws sts get-caller-identity
-aws eks update-kubeconfig --region your_region --name name_of_your_cluster</code></pre>
-<pre><code>kubectl get svc
-Kubectl get node
-</code></pre>
-</section>
-<section id="upgrade-helm-and-install-docker" class="level3">
-<h3 class="anchored" data-anchor-id="upgrade-helm-and-install-docker">Upgrade helm and install docker</h3>
-<pre><code>helm upgrade --cleanup-on-fail \
---install noaa-release jupyterhub/jupyterhub \
---namespace noaa \
---create-namespace \
---version='3.2.0' \
---values config_basic_docker.yaml \
---debug
-</code></pre>
-</section>
-<section id="connect-to-jupyterhub" class="level3">
-<h3 class="anchored" data-anchor-id="connect-to-jupyterhub">Connect to JupyterHub</h3>
-<pre><code>kubectl --namespace your_namespace get service proxy-public</code></pre>
-</section>
-</section>
-</section>
-<section id="terminal-jupyterhub-setup" class="level1">
-<h1>Terminal JupyterHub Setup</h1>
-<section id="delete-eks-cluster" class="level2">
-<h2 class="anchored" data-anchor-id="delete-eks-cluster">Delete EKS Cluster</h2>
-<ul>
-<li>delete cluster node group first</li>
-<li>delete eks cluster</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="Note">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>EBS should be deleted as cluster is terminated.</p>
-<p>TODO: verify</p>
-</div>
-</div>
-</section>
-<section id="delete-efs" class="level2">
-<h2 class="anchored" data-anchor-id="delete-efs">Delete EFS</h2>
-<ul>
-<li>Go to EFS file system and Delete EFS</li>
-</ul>
+<section id="thousand-years" class="level2">
+<h2 class="anchored" data-anchor-id="thousand-years">Thousand Years</h2>
+<p>Heart beats fast</p>
+<p>Colors and promises</p>
+<p>How to be brave?</p>
+<p>How can I love when I’m afraid to fall?</p>
+<p>But watching you stand alone</p>
+<p>All of my doubt suddenly goes away somehow</p>
+<p>One step closer</p>
+<p>I have died every day waiting for you</p>
+<p>Darling, don’t be afraid</p>
+<p>I have loved you for a thousand years</p>
+<p>I’ll love you for a thousand more</p>
+<p>Time stands still</p>
+<p>Beauty in all she is</p>
+<p>I will be brave</p>
+<p>I will not let anything take away</p>
+<p>What’s standing in front of me</p>
+<p>Every breath, every hour has come to this</p>
+<p>One step closer</p>
+<p>I have died every day waiting for you</p>
+<p>Darling, don’t be afraid</p>
+<p>I have loved you for a thousand years</p>
+<p>I’ll love you for a thousand more</p>
+<p>And all along I believed I would find you</p>
+<p>Time has brought your heart to me</p>
+<p>I have loved you for a thousand years</p>
+<p>I’ll love you for a thousand more</p>
+<p>One step closer</p>
+<p>One step closer</p>
+<p>I have died every day waiting for you</p>
+<p>Darling, don’t be afraid</p>
+<p>I have loved you for a thousand years</p>
+<p>I’ll love you for a thousand more</p>
+<p>And all along I believed I would find you</p>
+<p>Time has brought your heart to me</p>
+<p>I have loved you for a thousand years</p>
+<p>I’ll love you for a thousand more</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
