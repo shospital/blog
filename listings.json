@@ -2,15 +2,15 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/blog-post/songlist/summer25.html",
       "/posts/blog-post/songlist.html",
+      "/posts/blog-post/songlist/summer25.html",
       "/posts/blog-post/videotest.html",
       "/posts/blog-post/projection.html",
       "/posts/blog-post/cf-convention.html",
       "/posts/blog-post/erddap_features.html",
       "/posts/blog-post/erddap_private_dataset.html",
-      "/posts/blog-post/conf_resources.html",
       "/posts/blog-post/hth_v4.html",
+      "/posts/blog-post/conf_resources.html",
       "/posts/blog-post/jsdocs.html",
       "/posts/blog-post/posit-conf24.html",
       "/posts/blog-post/pycascade24.html",
