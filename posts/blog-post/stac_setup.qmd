@@ -1,0 +1,20 @@
+---
+title: "Understanding STAC"
+description: "Setting up STAC using stac-fastapi"
+author: "Sunny Hospital"
+date: "2025-08-12"
+categories: []
+image: "cat.jpeg"
+draft: true 
+
+---
+
+# Setting up stac-fastapi with postgresql locally
+
+With the stac-fastapi-pgstac, I was able to create STAC API.
+
+* STAC Catalog (root) was automatically provided by the API.
+* Collections - created IMS 1k sea ice collection using my STACManager class.
+* Items - added items to the collection by first accessing the files from s3 bucket to get the metadata then to create items using STACManager class.
+
+# Query and load data with xarray

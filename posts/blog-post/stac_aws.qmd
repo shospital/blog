@@ -3,12 +3,10 @@ title: "Setting up stac-fastapi"
 description: "Setting up STAC using stac-fastapi"
 author: "Sunny Hospital"
 date: "2025-07-24"
-categories: ["netcdf", "nco"]
 image: "cat.jpeg"
 draft: true 
 
 ---
-=
 
 # Setting up stac-fastapi with postgresql locally
 
