@@ -1,0 +1,38 @@
+---
+title: "Compressing netCDF4 data file"
+description: "Ways to compress netCDF4 data file"
+author: "Sunny Hospital"
+date: "09/02/2025"
+categories: ["netcdf"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+
+## Packing (CF): converting float to integer
+
+Packing is a way to store float data as
+integers, providing conversion instruction (scale_factor, add_offset, _FillValue). 
+`_FillValue` is an integer code for missing values.
+
+Integers are smaller, compress better thus reduce the file size. 
+
+```
+decoded_float = stored_integer * scale_factor + add_offset
+```
+
+When the file is read by `xarray` or `netCDF4` python packages, they decode 
+the values to float and converts the _FillValue to Nan.
+
+
+### Usage
+For sea ice fractions 0.000-1.000.  You only store them as integer 0-1000.
+
+* `scale_factor` = 0.001
+* `add_offset` = 0
+
+Example: real value of 0.123 is stored as 123.
