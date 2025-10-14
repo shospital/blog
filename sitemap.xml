@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shospital.github.io/blog/index.html</loc>
-    <lastmod>2025-09-04T19:25:39.461Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/erddap_private_dataset.html</loc>
-    <lastmod>2025-09-04T19:25:39.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/ncfile-cf.html</loc>
-    <lastmod>2025-09-04T19:25:39.464Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/songlist.html</loc>
-    <lastmod>2025-09-04T19:25:39.506Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/hth_v4.html</loc>
-    <lastmod>2025-09-04T19:25:39.463Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/projection.html</loc>
-    <lastmod>2025-09-04T19:25:39.505Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/songlist/summer25.html</loc>
-    <lastmod>2025-09-04T19:25:39.506Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/welcome/index.html</loc>
-    <lastmod>2025-09-04T19:25:39.506Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/cf-convention.html</loc>
-    <lastmod>2025-09-04T19:25:39.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/settingup_jh_aws.html</loc>
-    <lastmod>2025-09-04T19:25:39.506Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/conf_resources.html</loc>
-    <lastmod>2025-09-04T19:25:39.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/erddap_features.html</loc>
-    <lastmod>2025-09-04T19:25:39.462Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/iterables.html</loc>
-    <lastmod>2025-09-04T19:25:39.464Z</lastmod>
+    <loc>https://shospital.github.io/blog/about.html</loc>
+    <lastmod>2025-10-14T18:19:58.066Z</lastmod>
   </url>
   <url>
     <loc>https://shospital.github.io/blog/posts/blog-post/nc-compress.html</loc>
-    <lastmod>2025-09-04T19:25:39.464Z</lastmod>
+    <lastmod>2025-10-14T18:19:58.069Z</lastmod>
   </url>
   <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/jsdocs.html</loc>
-    <lastmod>2025-09-04T19:25:39.464Z</lastmod>
+    <loc>https://shospital.github.io/blog/posts/blog-post/songlist.html</loc>
+    <lastmod>2025-10-14T18:19:58.111Z</lastmod>
   </url>
   <url>
     <loc>https://shospital.github.io/blog/posts/blog-post/videotest.html</loc>
-    <lastmod>2025-09-04T19:25:39.506Z</lastmod>
+    <lastmod>2025-10-14T18:19:58.111Z</lastmod>
   </url>
   <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/index.html</loc>
-    <lastmod>2025-09-04T19:25:39.464Z</lastmod>
+    <loc>https://shospital.github.io/blog/posts/blog-post/iterables.html</loc>
+    <lastmod>2025-10-14T18:19:58.069Z</lastmod>
   </url>
   <url>
     <loc>https://shospital.github.io/blog/posts/blog-post/nco_cheatsheet.html</loc>
-    <lastmod>2025-09-04T19:25:39.464Z</lastmod>
+    <lastmod>2025-10-14T18:19:58.069Z</lastmod>
   </url>
   <url>
-    <loc>https://shospital.github.io/blog/posts/blog-post/posit-conf24.html</loc>
-    <lastmod>2025-09-04T19:25:39.505Z</lastmod>
+    <loc>https://shospital.github.io/blog/posts/blog-post/erddap_features.html</loc>
+    <lastmod>2025-10-14T18:19:58.067Z</lastmod>
   </url>
   <url>
     <loc>https://shospital.github.io/blog/posts/blog-post/pycascade24.html</loc>
-    <lastmod>2025-09-04T19:25:39.506Z</lastmod>
+    <lastmod>2025-10-14T18:19:58.110Z</lastmod>
   </url>
   <url>
-    <loc>https://shospital.github.io/blog/about.html</loc>
-    <lastmod>2025-09-04T19:25:39.461Z</lastmod>
+    <loc>https://shospital.github.io/blog/posts/blog-post/posit-conf24.html</loc>
+    <lastmod>2025-10-14T18:19:58.110Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/index.html</loc>
+    <lastmod>2025-10-14T18:19:58.068Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/index.html</loc>
+    <lastmod>2025-10-14T18:19:58.066Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/settingup_jh_aws.html</loc>
+    <lastmod>2025-10-14T18:19:58.111Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/projection.html</loc>
+    <lastmod>2025-10-14T18:19:58.110Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/cf-convention.html</loc>
+    <lastmod>2025-10-14T18:19:58.067Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/songlist/summer25.html</loc>
+    <lastmod>2025-10-14T18:19:58.111Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/hth_v4.html</loc>
+    <lastmod>2025-10-14T18:19:58.068Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/conf_resources.html</loc>
+    <lastmod>2025-10-14T18:19:58.067Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/jsdocs.html</loc>
+    <lastmod>2025-10-14T18:19:58.069Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/erddap_private_dataset.html</loc>
+    <lastmod>2025-10-14T18:19:58.067Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/blog-post/ncfile-cf.html</loc>
+    <lastmod>2025-10-14T18:19:58.069Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shospital.github.io/blog/posts/welcome/index.html</loc>
+    <lastmod>2025-10-14T18:19:58.111Z</lastmod>
   </url>
 </urlset>

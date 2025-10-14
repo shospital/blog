@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2025-06-25">
+<meta name="dcterms.date" content="2025-09-02">
 
-<title>CF Convention forTime – Blog</title>
+<title>How to fix ncfile for CF compliance – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e43d916a796ba491f09b26c0cdf668a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-4bc2b4e356910e472f7d50d601e09124.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,6 +82,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Blog</span>
     </a>
@@ -111,8 +114,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">CF Convention forTime</h1>
+      <h1 class="title">How to fix ncfile for CF compliance</h1>
                                 <div class="quarto-categories">
+                <div class="quarto-category">gis</div>
                 <div class="quarto-category">metadata</div>
               </div>
                   </div>
@@ -131,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 25, 2025</p>
+        <p class="date">September 2, 2025</p>
       </div>
     </div>
     
@@ -147,11 +151,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#time-variable" id="toc-time-variable" class="nav-link active" data-scroll-target="#time-variable">Time variable</a>
-  <ul class="collapse">
-  <li><a href="#time-units" id="toc-time-units" class="nav-link" data-scroll-target="#time-units">time units</a></li>
-  </ul></li>
-  <li><a href="#time-calendar" id="toc-time-calendar" class="nav-link" data-scroll-target="#time-calendar">Time Calendar</a></li>
+  <li><a href="#here-are-few-things-you-can-try-with-your-ncfile" id="toc-here-are-few-things-you-can-try-with-your-ncfile" class="nav-link active" data-scroll-target="#here-are-few-things-you-can-try-with-your-ncfile">Here are few things you can try with your ncfile</a></li>
   </ul>
 </nav>
     </div>
@@ -162,45 +162,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="time-variable" class="level2">
-<h2 class="anchored" data-anchor-id="time-variable">Time variable</h2>
+<section id="here-are-few-things-you-can-try-with-your-ncfile" class="level2">
+<h2 class="anchored" data-anchor-id="here-are-few-things-you-can-try-with-your-ncfile">Here are few things you can try with your ncfile</h2>
 <ul>
-<li>must include units (<a href="https://cfconventions.org/cf-conventions/cf-conventions.html#time-coordinate-units">see format</a>)</li>
-<li>has no default value</li>
-<li>time coordinate and the datetime are interconvertible given the calendar</li>
-<li>must comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)
-<ul>
-<li>acceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable</li>
-</ul></li>
-<li>leap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”</li>
+<li><strong>CF Checker</strong>: use cfchecker to make get some ideas</li>
 </ul>
-<section id="time-units" class="level3">
-<h3 class="anchored" data-anchor-id="time-units">time units</h3>
-<pre><code>double time(time) ;
-  time:axis = "T"; // optional
-  time:standard_name = "time" ; // optional
-  time:units = "days since 1990-1-1 0:0:0" ; // mandatory</code></pre>
-<p>Example of how adding leap second information</p>
-<pre><code>  float time_stdnone ;
-    time_stdnone:standard_name = "time" ;
-    time_stdnone:long_name = "Model data with no leap seconds" ;
-    time_stdnone:calendar = "standard" ;
-    time_stdnone:units = "seconds since 2016-12-31 23:59:58" ;
-    time_stdnone:units_metadata = "leap_seconds: none" ;
-  float time_stdutc ;
-    time_stdutc:standard_name = "time" ;
-    time_stdutc:long_name = "Model data with leap seconds or obs data with accurate UTC" ;
-    time_stdutc:calendar = "standard" ;
-    time_stdutc:units = "seconds since 2016-12-31 23:59:58" ;
-    time_stdutc:units_metadata = "leap_seconds: utc" ;</code></pre>
-</section>
-</section>
-<section id="time-calendar" class="level2">
-<h2 class="anchored" data-anchor-id="time-calendar">Time Calendar</h2>
+<pre><code>pip install cfchecker
+cfchecks youdata.nc</code></pre>
 <ul>
-<li>CF calendar refers to datetime, not just date.</li>
-<li>calendar standard: default UDUNITS. A <strong>deprecated</strong> alternative name is gregorian.</li>
-<li>other calendar categories are proleptic_gregorian, julian, and utc. Read more at <a href="https://cfconventions.org/cf-conventions/cf-conventions.html#leap-seconds">cf-convention</a></li>
+<li></li>
 </ul>
 
 
@@ -258,13 +228,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
