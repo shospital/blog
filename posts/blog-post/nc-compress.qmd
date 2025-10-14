@@ -36,3 +36,4 @@ For sea ice fractions 0.000-1.000.  You only store them as integer 0-1000.
 * `add_offset` = 0
 
 Example: real value of 0.123 is stored as 123.
+

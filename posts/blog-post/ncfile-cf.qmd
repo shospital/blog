@@ -1,9 +1,9 @@
 ---
-title: "CF Convention forTime"
+title: "How to fix ncfile for CF compliance"
 description: ""
 author: "Sunny Hospital"
-date: "06/25/2025"
-categories: ["metadata"]
+date: "09/02/2025"
+categories: ["gis", "metadata"]
 image: "cat.jpeg"
 draft: false
 html:
@@ -12,44 +12,12 @@ html:
         code-block-border-left: "#31BAE9"
 ---
 
-## Time variable
+## Here are few things you can try with your ncfile
 
-  * must include units ([see format](https://cfconventions.org/cf-conventions/cf-conventions.html#time-coordinate-units))
-  * has no default value
- * time coordinate and the datetime are interconvertible given the calendar
-* must comprise units of measure, "since", and a reference datetime. ("days sinced 1990-01-01")
-   * acceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable
-* leap seconds should be properly dealt but often not the case.  If using standard, proleptic_gregorian, and julian for calenar,
-one can add units_metadata to indicate "leap_seconds"
-
-### time units
-
+* __CF Checker__: use cfchecker to make get some ideas
 ```
-double time(time) ;
-  time:axis = "T"; // optional
-  time:standard_name = "time" ; // optional
-  time:units = "days since 1990-1-1 0:0:0" ; // mandatory
+pip install cfchecker
+cfchecks youdata.nc
 ```
 
-Example of how adding leap second information
-
-```
-  float time_stdnone ;
-    time_stdnone:standard_name = "time" ;
-    time_stdnone:long_name = "Model data with no leap seconds" ;
-    time_stdnone:calendar = "standard" ;
-    time_stdnone:units = "seconds since 2016-12-31 23:59:58" ;
-    time_stdnone:units_metadata = "leap_seconds: none" ;
-  float time_stdutc ;
-    time_stdutc:standard_name = "time" ;
-    time_stdutc:long_name = "Model data with leap seconds or obs data with accurate UTC" ;
-    time_stdutc:calendar = "standard" ;
-    time_stdutc:units = "seconds since 2016-12-31 23:59:58" ;
-    time_stdutc:units_metadata = "leap_seconds: utc" ;
-```
-
-## Time Calendar
-
-* CF calendar refers to datetime, not just date.
-* calendar standard: default UDUNITS.  A **deprecated** alternative name is gregorian. 
-* other calendar categories are proleptic_gregorian, julian, and utc. Read more at [cf-convention](https://cfconventions.org/cf-conventions/cf-conventions.html#leap-seconds)
+* 
