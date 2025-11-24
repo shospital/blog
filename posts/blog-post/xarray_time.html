@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="홧팅!">
+<meta name="author" content="Sunny Hospital">
+<meta name="dcterms.date" content="2025-11-25">
 
-<title>엄마의 팝송 리스트 – Blog</title>
+<title>Xarray time metadata – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,19 +112,31 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">엄마의 팝송 리스트</h1>
-                  <div>
-        <div class="description">
-          홧팅!
-        </div>
-      </div>
-                </div>
+      <h1 class="title">Xarray time metadata</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">metadata</div>
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">xarray</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Sunny Hospital </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 25, 2025</p>
+      </div>
+    </div>
     
       
     </div>
@@ -132,8 +145,15 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#time" id="toc-time" class="nav-link active" data-scroll-target="#time">Time</a></li>
+  <li><a href="#now-time" id="toc-now-time" class="nav-link" data-scroll-target="#now-time">Now Time!</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -142,12 +162,44 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="time" class="level2">
+<h2 class="anchored" data-anchor-id="time">Time</h2>
+<p>When I try to use time attributes in the metadata template for my new data in xarray format, it often doesn’t work.</p>
 <ul>
-<li><a href="songlist/fall25.html">2025년 가을학기</a></li>
-<li><a href="songlist/summer25.html">2025년 여름학기</a></li>
+<li>I need to treat time separately as there are two ways to write the metadata of time: attribute or encoding.</li>
 </ul>
+<p>first, copy the global attrs</p>
+<pre><code>ds.attrs = meta.attrs.copy()</code></pre>
+<p>second, copy the variable attrs manually</p>
+<pre><code>for v in vars = ["var1", "var2", "x", "y"]:
+    if v in vars and v in meta:
+        ds[v].attrs = meta[v].attrs.copy()
+</code></pre>
+</section>
+<section id="now-time" class="level2">
+<h2 class="anchored" data-anchor-id="now-time">Now Time!</h2>
+<p>First, get all time attributes</p>
+<pre><code>time_attrs = ds['time'].attrs.copy()</code></pre>
+<p>Now, pull out ecoding components manually (unit, calendar)</p>
+<pre><code>time_unit = time_attrs.pop('units', 'days since 1970-01-01') # pop units from time_attrs or default
+calendar = time_attrs.pop('calendar', 'standard') # pop calendar from time_attrs or default</code></pre>
+<p>Delete those variables from the dataset</p>
+<pre><code>for k in ['units', 'calendar']:
+    ds['time'].attrs.pop(k, None) # add None otherwise error thrown
+</code></pre>
+<p>Now update ds<a href="#time">time</a> attribute with time_attrs</p>
+<pre><code>ds['time'].attrs.update(time_attrs)
+</code></pre>
+<p>Update ds<a href="#time">time</a> with encoding</p>
+<pre><code>ds['time'].encoding.update = (
+    {
+    units = time_units,
+    calendar = time_calenar
+})
+</code></pre>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
