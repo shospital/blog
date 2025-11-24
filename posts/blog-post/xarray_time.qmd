@@ -1,0 +1,71 @@
+---
+title: "Xarray time metadata"
+description: ""
+author: "Sunny Hospital"
+date: "11/25/2025"
+categories: ["metadata", "python", "xarray"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+## Time
+When I try to use time attributes in the metadata template for my new data in xarray format, it often doesn't work.
+
+* I need to treat time separately as there are two ways to write the metadata of time: attribute or encoding.
+
+first, copy the global attrs 
+```
+ds.attrs = meta.attrs.copy()
+```
+
+second, copy the variable attrs manually
+
+```
+for v in vars = ["var1", "var2", "x", "y"]:
+    if v in vars and v in meta:
+        ds[v].attrs = meta[v].attrs.copy()
+
+```
+
+## Now Time!
+First, get all time attributes
+```
+time_attrs = ds['time'].attrs.copy()
+```
+
+Now, pull out ecoding components manually (unit, calendar)
+
+```
+time_unit = time_attrs.pop('units', 'days since 1970-01-01') # pop units from time_attrs or default
+calendar = time_attrs.pop('calendar', 'standard') # pop calendar from time_attrs or default
+```
+
+Delete those variables from the dataset
+```
+for k in ['units', 'calendar']:
+    ds['time'].attrs.pop(k, None) # add None otherwise error thrown
+
+```
+
+Now update ds[time] attribute with time_attrs
+
+```
+ds['time'].attrs.update(time_attrs)
+
+```
+
+Update ds[time] with encoding
+
+```
+ds['time'].encoding.update = (
+    {
+    units = time_units,
+    calendar = time_calenar
+})
+
+```
+
