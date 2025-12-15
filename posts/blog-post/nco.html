@@ -7,10 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2024-04-02">
-<meta name="description" content="Working with and nco tool">
+<meta name="dcterms.date" content="2025-06-25">
 
-<title>{nco} cheatsheet – Blog</title>
+<title>NetCDF Operators (NCO) – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,15 +112,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">{nco} cheatsheet</h1>
-                  <div>
-        <div class="description">
-          Working with and nco tool
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">netcdf</div>
-                <div class="quarto-category">nco</div>
+      <h1 class="title">NetCDF Operators (NCO)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">metadata</div>
               </div>
                   </div>
   </div>
@@ -139,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 2, 2024</p>
+        <p class="date">June 25, 2025</p>
       </div>
     </div>
     
@@ -150,8 +143,17 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ncdump" id="toc-ncdump" class="nav-link active" data-scroll-target="#ncdump"><code>ncdump</code></a></li>
+  <li><a href="#ncgen" id="toc-ncgen" class="nav-link" data-scroll-target="#ncgen"><code>ncgen</code></a></li>
+  <li><a href="#ncks" id="toc-ncks" class="nav-link" data-scroll-target="#ncks"><code>ncks</code></a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -160,14 +162,151 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is an instruction to create a netcdf file with templated metadata.</p>
-<section id="create-a-metadata-template-from-an-existing-nc-file" class="level4">
-<h4 class="anchored" data-anchor-id="create-a-metadata-template-from-an-existing-nc-file">Create a metadata template from an existing nc file</h4>
-<pre><code>ncdump samplefile.nc &gt; metadata_header.txt
-ncks -A -v temperature newdata.nc newfile.nc
-ncdump -v temperature newfile.nc
-ncks -A newdata.nc newfile.nc
+<pre class="mermaid"><code>flowchart TD
+
+    %% =========================
+    %% NOAA OCIO DNS
+    %% =========================
+    subgraph OCIO["NOAA OCIO (External DNS)"]
+        dns["DNS Record\n(erddap.some.noaa.gov)"]
+    end
+
+    %% =========================
+    %% GCP PROJECT
+    %% =========================
+    subgraph GCP["GCP Project (e.g. ggn-nmfs-swfscerddap-dev-1)"]
+
+        %% ---- Networking ----
+        subgraph NET["VPC Network: erddap-vpc"]
+            subnet["Subnetwork: erddap-subnet"]
+
+            %% Data Processing VM
+            dpvm["Compute Engine VM\nvm-data-proc\nSA: sa-data-proc"]
+
+            %% ERDDAP VM
+            erddapvm["Compute Engine VM\nvm-erddap\nSA: sa-erddap"]
+
+            %% Firewall Rules
+            fw_internal["Firewall: allow-internal\n(VPC internal traffic)"]
+            fw_lb["Firewall: allow-lb-to-erddap\n(source: LB ranges → ERDDAP port)"]
+            fw_hc["Firewall: allow-health-checks\n(source: HC ranges)"]
+        end
+
+        %% ---- Storage (GCS Buckets) ----
+        subgraph GCS["Cloud Storage"]
+            braw["Bucket: bucket-raw-data"]
+            bproc["Bucket: bucket-processed-data"]
+            bpub["Bucket: bucket-erddap-published"]
+        end
+
+        %% ---- IAM ----
+        subgraph IAM["IAM Bindings"]
+            iam_dp_raw["sa-data-proc → bucket-raw-data\nroles/storage.objectAdmin"]
+            iam_dp_proc["sa-data-proc → bucket-processed-data\nroles/storage.objectAdmin"]
+            iam_erddap_pub["sa-erddap → bucket-erddap-published\nroles/storage.objectViewer or objectAdmin"]
+        end
+
+        %% ---- External HTTPS Load Balancer ----
+        subgraph LB["External HTTPS Load Balancer"]
+            ip["Global Address\n(erddap-lb-ip)"]
+            hc["HealthCheck: erddap-hc\nHTTP(S) /erddap/index.html"]
+            ig["InstanceGroup or NEG\n(backends: vm-erddap)"]
+            be["BackendService: erddap-backend\n(protocol HTTP)"]
+            um["UrlMap: erddap-url-map\n(routes /, /erddap/*)"]
+            cert["(Managed)SslCertificate: erddap-ssl-cert"]
+            proxy["TargetHttpsProxy: erddap-https-proxy"]
+            fr["GlobalForwardingRule: erddap-https-fr\n:443 → proxy"]
+        end
+    end
+
+    %% =========================
+    %% Connections
+    %% =========================
+
+    %% DNS → LB IP
+    dns --&gt;|"A/CNAME → erddap-lb-ip"| ip
+
+    %% Forwarding rule → proxy → URL map → backend service
+    ip --&gt; fr --&gt; proxy --&gt; cert
+    proxy --&gt; um --&gt; be
+
+    %% backend service → instance group/NEG → ERDDAP VM
+    be --&gt;|"backends"| ig --&gt;|"targets"| erddapvm
+
+    %% Health check → ERDDAP VM
+    hc --&gt; erddapvm
+
+    %% VMs → Subnet
+    subnet --&gt; dpvm
+    subnet --&gt; erddapvm
+
+    %% Data flows: data processing VM ↔ buckets
+    dpvm --&gt;|"read/write"| braw
+    dpvm --&gt;|"read/write"| bproc
+    dpvm --&gt;|"write"| bpub
+
+    %% ERDDAP VM → published bucket
+    erddapvm --&gt;|"read (gcsfuse / API)"| bpub
+
+    %% IAM relationships (dashed to show logical binding)
+    iam_dp_raw -.-&gt; braw
+    iam_dp_raw -.-&gt; dpvm
+    iam_dp_proc -.-&gt; bproc
+    iam_dp_proc -.-&gt; dpvm
+
+    iam_erddap_pub -.-&gt; bpub
+    iam_erddap_pub -.-&gt; erddapvm
+
+    %% Firewall relations (conceptual)
+    fw_internal -.-&gt; dpvm
+    fw_internal -.-&gt; erddapvm
+
+    fw_lb -.-&gt; erddapvm
+    fw_hc -.-&gt; erddapvm
+
+
+## Useful nco commands
+
+For full descriptions, check out the resource links.
+
+### `nccopy` 
+
+The nccopy compresses a netCDF file at various levels
+
+**usage:**  ```nccopy [-flag] [original nc filename]  [compressed nc filename]</code></pre>
+<p><strong>example</strong> <code>nccopy -d4 largeFile.nc compressedFile.nc</code></p>
+<p><strong>options</strong>:</p>
+<p><code>-d</code> flag represents deflation level from 1 to 9 and is required.</p>
+<p>Level 1 (faster compression) to Level 9 (smaller compression)</p>
+<section id="ncdump" class="level3">
+<h3 class="anchored" data-anchor-id="ncdump"><code>ncdump</code></h3>
+<p>The ncdump generates an ASCII representation (common data language) of a netCDF file.</p>
+<p><strong>usage</strong>: <code>ncdump [-flag] [your nc filename] &gt; [your output file]</code></p>
+<p><strong>example:</strong> <code>ncdump -c input.nc &gt; output.cdl</code></p>
+<p><strong>options:</strong> <code>ncdump -h</code> outputs the header info; same as -c but doesn’t include values</p>
+</section>
+<section id="ncgen" class="level3">
+<h3 class="anchored" data-anchor-id="ncgen"><code>ncgen</code></h3>
+<p>The command reads the .cdl file and generates a NetCDF</p>
+<p><strong>usage:</strong> <code>ncgen -o nc_file cdl_file</code></p>
+<p><strong>example:</strong></p>
+<pre><code>ncgen -o output.nc input.cdl # specify an output file
+   
+ncgen -b input.cdl # caution, this overwites nc if it exists
+
+ncgen -k4 -o output.nc imput.cdl # Output netCDF-4 classic model file
 </code></pre>
+</section>
+<section id="ncks" class="level3">
+<h3 class="anchored" data-anchor-id="ncks"><code>ncks</code></h3>
+<p>This command merges (appends with -A) the new attributes from metadata.nc file into your existing NetCDF file.</p>
+<p><strong>usage:</strong> <code>nck -A filename1.nc filename2.nc</code></p>
+<p><strong>example:</strong> <code>ncks -A metadata.nc mydata_file.nc</code></p>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>https://www.bic.mni.mcgill.ca/users/sean/Docs/netcdf/guide.txn_79.html</p>
+<p>https://www.unidata.ucar.edu/software/netcdf/workshops/2011/utilities/NcgenExamples.html</p>
 
 
 </section>
