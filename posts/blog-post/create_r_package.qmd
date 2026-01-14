@@ -1,0 +1,221 @@
+---
+title: "R package development"
+description: ""
+author: "Sunny Hospital"
+date: "01/01/2026"
+categories: ["software", "r"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+This is my learning journey from [https://r-pkgs.org/whole-game.html](https://r-pkgs.org/whole-game.html).
+
+
+```
+# create package will create a basic dir structure
+usethis::create_package("~/regexcite")
+```
+
+### Create a function 
+
+Create a function and save it in `R/strsplit1.R`
+```
+strsplit1 <- function(x, split) {
+    strsplit(x, split=split)[[1]] # safer than unlist
+}
+```
+
+### `use_r` creates .R file in the right place
+```
+use_r("strsplit1") # creates R/strsplit1.R
+
+```
+
+### Now use it 
+
+`load_all(`) simulates the process of building, installing, 
+and attaching the regexcite package.
+
+
+```
+load_all()
+devtools::load_all() # or use it with namespace
+
+strsplit1("haha hoho", " ")
+```
+
+### License
+
+In `DESCRIPTION` page, you will see 
+
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+
+Run it and it will create and add content to LICENSE file
+
+```
+use_mit_license() # check LICENSE file
+```
+
+### Documentation
+
+roxygen2 creates documentation from comments starting with `#'` in your R code.
+
+```
+#' Split a string
+#'
+#' @param x A character vector with one element.
+#' @param split What to split on.
+#'
+#' @return A character vector.
+#' @export
+#'
+#' @examples
+#' x <- "alfa,bravo,charlie,delta"
+#' strsplit1(x, split = ",")
+strsplit1 <- function(x, split) {
+  strsplit(x, split = split)[[1]]
+}
+```
+
+```
+document()
+```
+
+### `NAMESPACE` change
+
+NAMESPACE is what makes `strsplit1` available to users after attaching regexcite via `library(regexcite)`.
+
+It's possible to manually manage but we can use `roxygen` to manage it.
+
+### `check()` again
+
+We previously had one warning about the license but we handled it. Now everything passes.
+
+### Install the package into library!
+
+With the minimum viable product, we can install the package into your library. 
+
+```
+install()
+```
+
+Now you can attach the package and use the function.
+
+```
+library(regexcite)
+strsplit1("haha hoho", " ")
+```
+
+
+### Unit test
+
+We can perform unit test using `use_testthat()`.
+This initializes the unit testing machinery for your package.
+* adds comments to `DESCRIPTION`
+* creates a directory `tests/testthat/` 
+* adds a script `test/testthat.R`
+
+
+```
+use_test("strsplit1") # creates and opens a test file
+```
+
+Replace it with the following
+```
+test_that("strsplit1() splits a string", {
+  expect_equal(strsplit1("a,b,c", split = ","), c("a", "b", "c"))
+})
+
+```
+
+Run the test
+```
+test()
+```
+
+Note: tests will be run with `check()`
+
+### Use of external packages
+
+You can use external package using `use_package()`.
+
+It will modify DESCRIPTION. 
+```
+use_package("stringr") # adds stringr to Imports in DESCRIPTION
+```
+
+Modify the function
+```
+str_split_one <- function(string, pattern, n = Inf) {
+  stopifnot(is.character(string), length(string) <= 1)
+  if (length(string) == 1) {
+    stringr::str_split(string = string, pattern = pattern, n = n)[[1]]
+  } else {
+    character()
+  }
+}
+```
+
+#Rename the files using `rename_files()`
+
+```
+rename_files("strsplit1", "str_split_one")
+```
+
+### It's important to `document()`
+
+Remember that document() does two main jobs:
+
+* Converts our roxygen comments into proper R documentation.
+* (Re)generates NAMESPACE.
+
+### Modify test and run it
+
+```
+test_that("str_split_one() splits a string", {
+  expect_equal(str_split_one("a,b,c", ","), c("a", "b", "c"))
+})
+
+test_that("str_split_one() errors if input length > 1", {
+  expect_error(str_split_one(c("a,b","c,d"), ","))
+})
+
+test_that("str_split_one() exposes features of stringr::str_split()", {
+  expect_equal(str_split_one("a,b,c", ",", n = 2), c("a", "b,c"))
+  expect_equal(str_split_one("a.b", stringr::fixed(".")), c("a", "b"))
+})
+
+
+```
+
+### Now load to use the function
+
+```
+load_all()
+str_split_one("a, b, c", pattern = ", ")
+```
+### Load to Github
+
+Add your package to your github using `use_github()`
+
+### Create readme using `use_readme_rmd()`
+
+```
+use_readme_rmd()
+```
+
+* Creates README.md
+* Add lines in .Rbuildignore
+* Creates a git pre-commit hook to keep .Rmd and md in sync.
+
+### Modify readme
+
+* Modify .Rmd then run `devtools::build_readme()` to update README.md
+
+See the example from the [book](https://github.com/shospital/regexcite)
+
