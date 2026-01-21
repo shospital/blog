@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sunny Hospital">
-<meta name="dcterms.date" content="2025-06-25">
+<meta name="dcterms.date" content="2026-01-14">
 
-<title>CF Convention forTime – Blog</title>
+<title>Create Vignettes – Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,9 +112,11 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">CF Convention forTime</h1>
+      <h1 class="title">Create Vignettes</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">metadata</div>
+                <div class="quarto-category">software</div>
+                <div class="quarto-category">r</div>
+                <div class="quarto-category">r-package</div>
               </div>
                   </div>
   </div>
@@ -132,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 25, 2025</p>
+        <p class="date">January 14, 2026</p>
       </div>
     </div>
     
@@ -148,11 +150,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#time-variable" id="toc-time-variable" class="nav-link active" data-scroll-target="#time-variable">Time variable</a>
+  <li><a href="#structure-of-vignette" id="toc-structure-of-vignette" class="nav-link active" data-scroll-target="#structure-of-vignette">Structure of Vignette</a>
   <ul class="collapse">
-  <li><a href="#time-units" id="toc-time-units" class="nav-link" data-scroll-target="#time-units">time units</a></li>
+  <li><a href="#metadata" id="toc-metadata" class="nav-link" data-scroll-target="#metadata">metadata</a></li>
+  <li><a href="#fields-not-often-used" id="toc-fields-not-often-used" class="nav-link" data-scroll-target="#fields-not-often-used">Fields not often used</a></li>
   </ul></li>
-  <li><a href="#time-calendar" id="toc-time-calendar" class="nav-link" data-scroll-target="#time-calendar">Time Calendar</a></li>
+  <li><a href="#advice-on-writing-vignettes" id="toc-advice-on-writing-vignettes" class="nav-link" data-scroll-target="#advice-on-writing-vignettes">Advice on writing Vignettes</a></li>
+  <li><a href="#number-of-vignettes" id="toc-number-of-vignettes" class="nav-link" data-scroll-target="#number-of-vignettes">Number of Vignettes</a></li>
   </ul>
 </nav>
     </div>
@@ -163,45 +167,67 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="time-variable" class="level2">
-<h2 class="anchored" data-anchor-id="time-variable">Time variable</h2>
+<p>This is my learning journey from <a href="https://r-pkgs.org/whole-game.html">https://r-pkgs.org/whole-game.html</a>.</p>
+<p>The summary note of the regexcite package creation, go to <a href="create_r_package.html">Create R Package page</a>.</p>
+<pre><code># create package will create a basic dir structure
+usethis::create_package("~/regexcite")</code></pre>
+<p>The workflow to create vignettes.</p>
+<pre><code>use_vignettes() # to create a directory and update desc and .gitignore
+load_all()
+library('my-package')</code></pre>
+<section id="structure-of-vignette" class="level2">
+<h2 class="anchored" data-anchor-id="structure-of-vignette">Structure of Vignette</h2>
+<p>Summary note from <a href="https://r-pkgs.org/vignettes.html">https://r-pkgs.org/vignettes.html</a></p>
+<section id="metadata" class="level3">
+<h3 class="anchored" data-anchor-id="metadata">metadata</h3>
+<pre><code>---
+title: "Vignette Title"
+output: rmarkdown::html_vignette
+vignette: &gt;
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+</code></pre>
 <ul>
-<li>must include units (<a href="https://cfconventions.org/cf-conventions/cf-conventions.html#time-coordinate-units">see format</a>)</li>
-<li>has no default value</li>
-<li>time coordinate and the datetime are interconvertible given the calendar</li>
-<li>must comprise units of measure, “since”, and a reference datetime. (“days sinced 1990-01-01”)
-<ul>
-<li>acceptable unit of measures (day (h), hour (hr, h), minute (min), and second (sec, s). Plurals are acceptable</li>
-</ul></li>
-<li>leap seconds should be properly dealt but often not the case. If using standard, proleptic_gregorian, and julian for calenar, one can add units_metadata to indicate “leap_seconds”</li>
+<li>Each line consists of a field name, colon (:), value field</li>
+<li>You can use <code>&gt;</code> as a plain text</li>
 </ul>
-<section id="time-units" class="level3">
-<h3 class="anchored" data-anchor-id="time-units">time units</h3>
-<pre><code>double time(time) ;
-  time:axis = "T"; // optional
-  time:standard_name = "time" ; // optional
-  time:units = "days since 1990-1-1 0:0:0" ; // mandatory</code></pre>
-<p>Example of how adding leap second information</p>
-<pre><code>  float time_stdnone ;
-    time_stdnone:standard_name = "time" ;
-    time_stdnone:long_name = "Model data with no leap seconds" ;
-    time_stdnone:calendar = "standard" ;
-    time_stdnone:units = "seconds since 2016-12-31 23:59:58" ;
-    time_stdnone:units_metadata = "leap_seconds: none" ;
-  float time_stdutc ;
-    time_stdutc:standard_name = "time" ;
-    time_stdutc:long_name = "Model data with leap seconds or obs data with accurate UTC" ;
-    time_stdutc:calendar = "standard" ;
-    time_stdutc:units = "seconds since 2016-12-31 23:59:58" ;
-    time_stdutc:units_metadata = "leap_seconds: utc" ;</code></pre>
-</section>
-</section>
-<section id="time-calendar" class="level2">
-<h2 class="anchored" data-anchor-id="time-calendar">Time Calendar</h2>
+<section id="title" class="level4">
+<h4 class="anchored" data-anchor-id="title">Title</h4>
 <ul>
-<li>CF calendar refers to datetime, not just date.</li>
-<li>calendar standard: default UDUNITS. A <strong>deprecated</strong> alternative name is gregorian.</li>
-<li>other calendar categories are proleptic_gregorian, julian, and utc. Read more at <a href="https://cfconventions.org/cf-conventions/cf-conventions.html#leap-seconds">cf-convention</a></li>
+<li>Title of the Vignette</li>
+<li>Need to update {Vignette Title} as it’s not automatic.</li>
+</ul>
+</section>
+<section id="output" class="level4">
+<h4 class="anchored" data-anchor-id="output">Output</h4>
+<ul>
+<li>Output format</li>
+<li>For more details, visit <code>?rmarkdown::html_vignette</code></li>
+</ul>
+</section>
+</section>
+<section id="fields-not-often-used" class="level3">
+<h3 class="anchored" data-anchor-id="fields-not-often-used">Fields not often used</h3>
+<ul>
+<li>author: not used unless author is different from authors of the package</li>
+<li>date: unclear what it refers to</li>
+</ul>
+</section>
+</section>
+<section id="advice-on-writing-vignettes" class="level2">
+<h2 class="anchored" data-anchor-id="advice-on-writing-vignettes">Advice on writing Vignettes</h2>
+<ul>
+<li>motivation is to teach how to use your package</li>
+<li>be in the reader’s shoes and adapt beginner’s mind</li>
+</ul>
+</section>
+<section id="number-of-vignettes" class="level2">
+<h2 class="anchored" data-anchor-id="number-of-vignettes">Number of Vignettes</h2>
+<ul>
+<li>One may be sufficient</li>
+<li>call it mypackage.Rmd (automatic link)</li>
 </ul>
 
 

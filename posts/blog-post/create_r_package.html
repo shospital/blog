@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4bc2b4e356910e472f7d50d601e09124.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -116,6 +116,7 @@ ul.task-list li input[type="checkbox"] {
                                 <div class="quarto-categories">
                 <div class="quarto-category">software</div>
                 <div class="quarto-category">r</div>
+                <div class="quarto-category">r-package</div>
               </div>
                   </div>
   </div>
@@ -165,6 +166,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#load-to-github" id="toc-load-to-github" class="nav-link" data-scroll-target="#load-to-github">Load to Github</a></li>
   <li><a href="#create-readme-using-use_readme_rmd" id="toc-create-readme-using-use_readme_rmd" class="nav-link" data-scroll-target="#create-readme-using-use_readme_rmd">Create readme using <code>use_readme_rmd()</code></a></li>
   <li><a href="#modify-readme" id="toc-modify-readme" class="nav-link" data-scroll-target="#modify-readme">Modify readme</a></li>
+  <li><a href="#create-vignettes" id="toc-create-vignettes" class="nav-link" data-scroll-target="#create-vignettes">Create vignettes</a></li>
   </ul>
 </nav>
     </div>
@@ -320,6 +322,28 @@ str_split_one("a, b, c", pattern = ", ")</code></pre>
 <li>Modify .Rmd then run <code>devtools::build_readme()</code> to update README.md</li>
 </ul>
 <p>See the example from the <a href="https://github.com/shospital/regexcite">book</a></p>
+</section>
+<section id="create-vignettes" class="level3">
+<h3 class="anchored" data-anchor-id="create-vignettes">Create vignettes</h3>
+<p>Using <code>usethis::use_vignette("my-vignette")</code> does</p>
+<ul>
+<li>creates <code>vignettes/</code> directory</li>
+<li>add content to <code>DESCRIPTION</code></li>
+<li>add content to .gitignore</li>
+</ul>
+<p>Workflow</p>
+<pre><code># 1.Create
+usethis::use_vignette("my-vignette")
+
+# 2. Add pros and code chunks
+
+# 3. load
+load_all()
+
+# 4. render 
+library(my-package)</code></pre>
+<p>note: check out <code>install(build_vignettes = TRUE)</code></p>
+<p>For more detailed vignettes info, go here!</p>
 
 
 </section>
