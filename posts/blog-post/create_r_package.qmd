@@ -3,7 +3,7 @@ title: "R package development"
 description: ""
 author: "Sunny Hospital"
 date: "01/01/2026"
-categories: ["software", "r"]
+categories: ["software", "r", "r-package"]
 image: "cat.jpeg"
 draft: false
 html:
@@ -219,3 +219,28 @@ use_readme_rmd()
 
 See the example from the [book](https://github.com/shospital/regexcite)
 
+### Create vignettes
+
+Using `usethis::use_vignette("my-vignette")` does
+
+* creates `vignettes/` directory
+* add content to `DESCRIPTION`
+* add content to .gitignore
+
+Workflow
+
+```
+# 1.Create
+usethis::use_vignette("my-vignette")
+
+# 2. Add pros and code chunks
+
+# 3. load
+load_all()
+
+# 4. render 
+library(my-package)
+```
+note: check out `install(build_vignettes = TRUE)`
+
+For more detailed vignettes info, go here!

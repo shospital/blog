@@ -5,6 +5,7 @@ image: "cat.jpeg"
 draft: false 
 ---
 
+* <a href="songlist/winter26.html">2026년 겨울학기</a>
 * <a href="songlist/fall25.html">2025년 가을학기</a>
 * <a href="songlist/summer25.html">2025년 여름학기</a>
 

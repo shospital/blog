@@ -1,0 +1,76 @@
+---
+title: "Create Vignettes"
+description: ""
+author: "Sunny Hospital"
+date: "01/14/2026"
+categories: ["software", "r", "r-package"]
+image: "cat.jpeg"
+draft: false
+html:
+    format:
+        code-block-bg: true
+        code-block-border-left: "#31BAE9"
+---
+
+This is my learning journey from [https://r-pkgs.org/whole-game.html](https://r-pkgs.org/whole-game.html).
+
+The summary note of the regexcite package creation, go to [Create R Package page](create_r_package.html).
+
+```
+# create package will create a basic dir structure
+usethis::create_package("~/regexcite")
+```
+
+The workflow to create vignettes.
+
+```
+use_vignettes() # to create a directory and update desc and .gitignore
+load_all()
+library('my-package')
+```
+
+## Structure of Vignette
+
+Summary note from [https://r-pkgs.org/vignettes.html](https://r-pkgs.org/vignettes.html)
+
+### metadata
+```
+---
+title: "Vignette Title"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```
+
+* Each line consists of a field name, colon (:), value field
+* You can use `>` as a plain text
+
+#### Title
+
+* Title of the Vignette
+* Need to update {Vignette Title} as it's not automatic.
+
+#### Output
+
+* Output format 
+* For more details, visit `?rmarkdown::html_vignette`
+
+
+### Fields not often used
+
+* author: not used unless author is different from authors of the package
+* date: unclear what it refers to
+
+## Advice on writing Vignettes
+
+* motivation is to teach how to use your package
+* be in the reader's shoes and adapt beginner's mind
+
+## Number of Vignettes
+
+* One may be sufficient
+* call it mypackage.Rmd (automatic link)
