@@ -2,10 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/blog-post/songlist/winter26.html",
+      "/posts/blog-post/songlist.html",
       "/posts/blog-post/songlist/summer25.html",
       "/posts/blog-post/songlist/fall25.html",
-      "/posts/blog-post/songlist.html",
+      "/posts/blog-post/songlist/winter26.html",
       "/posts/blog-post/create_vignettes.html",
       "/posts/blog-post/create_r_package.html",
       "/posts/blog-post/xarray_time.html",
@@ -17,8 +17,8 @@
       "/posts/blog-post/nco.html",
       "/posts/blog-post/erddap_features.html",
       "/posts/blog-post/erddap_private_dataset.html",
-      "/posts/blog-post/hth_v4.html",
       "/posts/blog-post/conf_resources.html",
+      "/posts/blog-post/hth_v4.html",
       "/posts/blog-post/jsdocs.html",
       "/posts/blog-post/posit-conf24.html",
       "/posts/blog-post/pycascade24.html",
